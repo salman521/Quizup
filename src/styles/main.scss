@@ -1,0 +1,14 @@
+@import "./abstracts/variables";
+@import "./base/_reset";
+@import "./components/transaction";
+@import "./components/sidebar";
+@import "./components/calender";
+@import "./pages/login";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+.App {
+  background: $primary;
+  height: 100vh;
+
+  font-family: "Open Sans";
+}
