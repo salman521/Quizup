@@ -32,23 +32,26 @@ export const postQuestion = data => {
     payload: axios.post("http://localhost:5000/questions", data)
   };
 };
-// export const signUp = userData => {
-//   return {
-//     type: `${UserActions.USER_SIGNUP}`,
-//     payload: axios.post("http://localhost:5000/users/signup", userData)
-//   };
-// };
-// export const login = userData => {
-//   return {
-//     type: `${UserActions.USER_LOGIN}`,
-//     payload: axios.post("http://localhost:5000/users/login", userData)
-//   };
-// };
-// export const getUser = () => {
-//   const id = localStorage.getItem("id");
 
-//   return {
-//     type: `${UserActions.GET_USER}`,
-//     payload: axios.get(`http://localhost:5000/users/getUser/${id}`)
-//   };
-// };
+export const getQuestions = categoryId => {
+  return {
+    type: `${QuestionActions.GET_QUESTIONS}`,
+    payload: axios.get(`http://localhost:5000/questions/${categoryId}`)
+  };
+};
+export const deleteQuestion = questionId => {
+  return {
+    type: `${QuestionActions.DELETE_QUESTION}`,
+    payload: axios.delete("http://localhost:5000/questions", {
+      params: {
+        id: questionId
+      }
+    })
+  };
+};
+export const putQuestion = data => {
+  return {
+    type: `${QuestionActions.UPDATE_QUESTION}`,
+    payload: axios.put("http://localhost:5000/questions", data)
+  };
+};

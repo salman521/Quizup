@@ -19,7 +19,8 @@ const initalState = {
       }
     ]
   },
-  loading: false
+  loading: false,
+  quizQuestions: []
 };
 
 export default (state = initalState, action) => {
@@ -72,6 +73,24 @@ export default (state = initalState, action) => {
     case `${QuestionActions.POST_QUESTION}_${Suffixes.FAILURE}`:
       return {
         ...state,
+        loading: false
+      };
+    case `${QuestionActions.GET_QUESTIONS}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        quizQuestions: [],
+        loading: true
+      };
+    case `${QuestionActions.GET_QUESTIONS}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        quizQuestions: action.payload.data,
+        loading: false
+      };
+    case `${QuestionActions.GET_QUESTIONS}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        quizQuestions: [],
         loading: false
       };
     default:

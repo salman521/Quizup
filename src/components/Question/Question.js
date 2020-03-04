@@ -15,15 +15,103 @@ import {
   FormControlLabel,
   Checkbox
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import Popover from "@material-ui/core/Popover";
+import Button from "../Button";
 import AddIcon from "@material-ui/icons/Add";
 import * as Colors from "../../styles/colors";
+import EditQuestion from "../EditQuestion";
 
-const Question = ({ t, question, index, ...props }) => {
+const Question = ({
+  t,
+  question,
+  index,
+  deleteQuestion,
+  activeCategoryId,
+  // setBoxOpen,
+  getQuestions,
+  ...props
+}) => {
   const [expanded, setExpanded] = useState(false);
+  const [editBoxOpen, setEditBoxOpen] = useState(false);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const popoverOpen = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
+  const id = popoverOpen ? "simple-popover" : undefined;
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div style={{ transition: "all 0.5s ease" }}>
+      <EditQuestion
+        open={editBoxOpen}
+        questionForEdit={question}
+        activeCategoryId={activeCategoryId && activeCategoryId}
+        handleClose={() => {
+          setEditBoxOpen(!editBoxOpen);
+        }}
+      />
+      {/* ////////////////////////////////////// Popover Code Start////////////////////////////////// */}
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        PaperProps={{
+          style: { borderRadius: 8, backgroundColor: Colors.TERTIARY }
+        }}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+        transformOrigin={{
+          vertical: "top",
+
+          horizontal: "right"
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: Colors.TERTIARY,
+            // borderRadius: 10,
+            display: "flex",
+            flexDirection: "column"
+          }}
+        >
+          <Button
+            onClick={event => {
+              // setMemberId(member.id);
+              setEditBoxOpen(true);
+              setAnchorEl(null);
+            }}
+            customStyle={{
+              backgroundColor: Colors.TERTIARY,
+              color: Colors.TEXT_TERTIARY,
+              textAlign: "left"
+            }}
+            text={"Edit Question"}
+          />
+          <Button
+            onClick={() => {
+              // alert(question._id);
+              deleteQuestion(question._id)
+                .then(res => {
+                  getQuestions(activeCategoryId).then(res => {
+                    setAnchorEl(null);
+                  });
+                })
+                .catch(err => alert("Cannot delete Question"));
+            }}
+            customStyle={{
+              backgroundColor: Colors.TERTIARY,
+              color: Colors.TEXT_TERTIARY,
+              textAlign: "left"
+            }}
+            text={"Delete Question"}
+          />
+        </div>
+      </Popover>
+      {/* ////////////////////////////////////// Popover Code End //////////////////////////// */}
       <div
         style={{
           display: "flex",
@@ -105,20 +193,13 @@ const Question = ({ t, question, index, ...props }) => {
               </div>
             </div>
           </div>
-          <div>
-            <img
-              src={
-                expanded
-                  ? require("../../Image/cross.png")
-                  : require("../../Image/dropdownWhite.png")
-              }
-              width={expanded ? "13" : "15"}
-              height={expanded ? "12" : "11"}
-              onClick={() => {
-                setExpanded(!expanded);
-              }}
-              alt="Logo"
-            />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={event => {
+              setAnchorEl(event.currentTarget);
+            }}
+          >
+            <img src={require("../../Image/menu.png")} height="14" alt="Logo" />
           </div>
         </div>
       </div>

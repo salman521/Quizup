@@ -8,7 +8,8 @@ import {
   setOptionC,
   setOptionD,
   setAnswerIndex,
-  postQuestion
+  postQuestion,
+  getQuestions
 } from "../../actions/question";
 
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
   setOptionC: value => dispatch(setOptionC(value)),
   setOptionD: value => dispatch(setOptionD(value)),
   setAnswerIndex: value => dispatch(setAnswerIndex(value)),
-  postQuestion: data => dispatch(postQuestion(data))
+  postQuestion: data => dispatch(postQuestion(data)),
+  getQuestions: categoryId => dispatch(getQuestions(categoryId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

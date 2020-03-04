@@ -48,26 +48,40 @@ const useStyles = makeStyles({
   //   }
   // }
 });
-const AddQuestion = ({
+const EditQuestion = ({
   open,
   handleClose,
-  questionData,
-  setQuestion,
-  setOptionA,
-  setOptionB,
-  setOptionC,
-  setOptionD,
-  setAnswerIndex,
   activeCategoryId,
-  postQuestion,
+  putQuestion,
   getQuestions,
+  questionForEdit,
   ...props
 }) => {
+  // const { question: questionData } = props;
+  const questionData = { ...questionForEdit };
+  console.log(questionData, "ss");
   const classes = useStyles();
+  const [question, setQuestion] = useState(questionData.question);
+  const [answerindex, setAnswerIndex] = useState(questionData.answerindex);
+  const [optionA, setOptionA] = useState(questionData.answers[0].option);
+  const [optionB, setOptionB] = useState(questionData.answers[1].option);
+  const [optionC, setOptionC] = useState(questionData.answers[2].option);
+  const [optionD, setOptionD] = useState(questionData.answers[3].option);
 
   const handleCloseDialogs = () => {
-    questionData.activeCategoryId = activeCategoryId;
-    postQuestion(questionData)
+    var data = {
+      id: questionData._id,
+      question,
+      answerindex,
+      answers: [
+        { option: optionA },
+        { option: optionB },
+        { option: optionC },
+        { option: optionD }
+      ]
+    };
+
+    putQuestion(data)
       .then(res => {
         getQuestions(activeCategoryId).then(res => {
           handleClose();
@@ -110,7 +124,7 @@ const AddQuestion = ({
               marginBottom: 15
             }}
           >
-            New Question
+            Edit Question
           </div>
           <div style={{ height: 400, width: 500 }}>
             <div>
@@ -140,7 +154,7 @@ const AddQuestion = ({
                   style: { color: Colors.TEXT_TERTIARY }
                 }}
                 fullWidth
-                value={questionData.question}
+                value={question}
                 onChange={e => setQuestion(e.target.value)}
                 label="Question"
               />
@@ -174,7 +188,7 @@ const AddQuestion = ({
                   style: { color: Colors.TEXT_TERTIARY }
                 }}
                 // fullWidth
-                // value={questionData.answers[0].option}
+                value={optionA}
                 onChange={e => setOptionA(e.target.value)}
                 label="Option A"
               />
@@ -208,7 +222,7 @@ const AddQuestion = ({
                   style: { color: Colors.TEXT_TERTIARY }
                 }}
                 // fullWidth
-                // value={question}
+                value={optionB}
                 onChange={e => setOptionB(e.target.value)}
                 label="Option B"
               />
@@ -242,8 +256,7 @@ const AddQuestion = ({
                   style: { color: Colors.TEXT_TERTIARY }
                 }}
                 // fullWidth
-                // value={question}
-
+                value={optionC}
                 onChange={e => setOptionC(e.target.value)}
                 label="Option C"
               />
@@ -277,7 +290,7 @@ const AddQuestion = ({
                   style: { color: Colors.TEXT_TERTIARY }
                 }}
                 // fullWidth
-                // value={question}
+                value={optionD}
                 onChange={e => setOptionD(e.target.value)}
                 label="Option D"
               />
@@ -294,15 +307,15 @@ const AddQuestion = ({
               </span>
               <div>
                 <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
+                  aria-label="answer"
+                  name="answer"
                   style={{
                     // border: "1px solid green",
                     display: "flex",
                     flexDirection: "row"
                   }}
                   color="primary"
-                  // value={questionData.answerindex}
+                  value={answerindex.toString()}
                   onChange={e => {
                     setAnswerIndex(e.target.value);
                   }}
@@ -380,4 +393,4 @@ const AddQuestion = ({
   );
 };
 
-export default AddQuestion;
+export default EditQuestion;

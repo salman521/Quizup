@@ -87,7 +87,7 @@ const BookDetail = ({
 
           <AddQuestion
             open={open}
-            activeCategoryId={activeCategoryId}
+            activeCategoryId={activeCategoryId && activeCategoryId}
             handleClose={() => {
               setBoxOpen(!open);
             }}
