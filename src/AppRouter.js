@@ -8,8 +8,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { connect } from "react-redux";
 import Login from "./pages/Login";
+import AdminLogin from "./pages/AdminLogin";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import AdminDashboard from "./pages/AdminDashboard";
 
 import AuthRoute from "./auth/AuthRoute";
 import OpenRoute from "./auth/OpenRoute";
@@ -35,11 +37,19 @@ const AppRouter = props => {
           {/* <Route path='/' component={LoginPage} exact /> */}
           <OpenRoute path="/signup" component={Signup} exact />
           <OpenRoute path="/login" component={Login} exact />
+          <OpenRoute path="/adminlogin" component={AdminLogin} exact />
+
           {/* <OpenRoute path="/newuser" component={NewUser} exact /> */}
           <AuthRoute
             path="/home"
             exact
             component={Home}
+            isAuthenticated={loggedIn}
+          />
+          <AuthRoute
+            path="/admindashboard"
+            exact
+            component={AdminDashboard}
             isAuthenticated={loggedIn}
           />
           {/* <AuthRoute

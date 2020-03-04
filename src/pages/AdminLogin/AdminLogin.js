@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 
-const Login = ({ history, login, ...props }) => {
+const AdminLogin = ({ history, login, ...props }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   return (
@@ -30,7 +30,7 @@ const Login = ({ history, login, ...props }) => {
       <div className="loginPage">
         <form>
           <Typography className="heading" variant="h5">
-            Login
+            Admin Panel Login
           </Typography>
           <div className="data-Input">
             <TextField
@@ -81,7 +81,7 @@ const Login = ({ history, login, ...props }) => {
                 login(data)
                   .then(res => {
                     localStorage.setItem("id", res.value.data._id);
-                    history.push("/home");
+                    history.push("/admindashboard");
                   })
                   .catch(err => {
                     alert("Email or Password incorrect");
@@ -91,23 +91,6 @@ const Login = ({ history, login, ...props }) => {
             >
               Login
             </Button>
-            <Button
-              onClick={() => {
-                history.push("/signup");
-              }}
-              className=" button-Signup"
-            >
-              Sign Up
-            </Button>
-
-            <Button
-              onClick={() => {
-                history.push("/adminlogin");
-              }}
-              className=" button-Login"
-            >
-              Admin Panel
-            </Button>
           </Grid>
         </form>
       </div>
@@ -115,4 +98,4 @@ const Login = ({ history, login, ...props }) => {
   );
 };
 
-export default Login;
+export default AdminLogin;

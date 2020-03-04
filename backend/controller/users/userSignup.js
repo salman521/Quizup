@@ -1,6 +1,6 @@
 var { User } = require("../../models/user");
 
-var businessSignup = async (req, res, next) => {
+var userSignup = async (req, res, next) => {
   try {
     const { email, password, name } = req.body;
     var data = await new User({
@@ -17,4 +17,4 @@ var businessSignup = async (req, res, next) => {
     next(err);
   }
 };
-module.exports = businessSignup;
+module.exports = userSignup;

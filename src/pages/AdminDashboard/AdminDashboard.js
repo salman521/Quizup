@@ -27,13 +27,13 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   }
 }));
-const Home = ({ history, getUser, userData, ...props }) => {
+const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const classes = useStyles();
   useEffect(() => {
-    getUser();
-  }, [userData === null]);
+    getAdmin();
+  }, [adminData === null]);
   return (
     <div>
       <AppBar position="static">
@@ -70,14 +70,14 @@ const Home = ({ history, getUser, userData, ...props }) => {
         }}
       >
         <Typography className="heading" variant="h2">
-          Welcome To Quiz App Dashboard
+          Welcome To Quiz App Admin Dashboard
         </Typography>
         <Typography className="heading" variant="h5">
-          {userData.name}
+          {adminData.name}
         </Typography>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default AdminDashboard;
