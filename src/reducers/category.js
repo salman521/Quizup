@@ -27,7 +27,7 @@ export default (state = initalState, action) => {
       return {
         ...state,
         loading: true,
-        categories: {}
+        categories: []
       };
     case `${CategoryActions.GET_CATEGORIES}_${Suffixes.SUCCESS}`:
       return {
@@ -39,7 +39,22 @@ export default (state = initalState, action) => {
       return {
         ...state,
         loading: false,
-        categories: {}
+        categories: []
+      };
+    case `${CategoryActions.DELETE_CATEGORY}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        loading: true
+      };
+    case `${CategoryActions.DELETE_CATEGORY}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        loading: false
+      };
+    case `${CategoryActions.DELETE_CATEGORY}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false
       };
 
     default:

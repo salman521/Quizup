@@ -15,3 +15,19 @@ export const getCategories = () => {
     payload: axios.get("http://localhost:5000/categories")
   };
 };
+export const deleteCategory = id => {
+  return {
+    type: `${CategoryActions.DELETE_CATEGORY}`,
+    payload: axios.delete("http://localhost:5000/categories", {
+      params: {
+        id
+      }
+    })
+  };
+};
+export const updateCategory = data => {
+  return {
+    type: `${CategoryActions.UPDATE_CATEGORY}`,
+    payload: axios.put("http://localhost:5000/categories", data)
+  };
+};

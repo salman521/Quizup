@@ -79,9 +79,7 @@ const SideBar = ({
   const [organization, setOrganization] = useState();
 
   const open = Boolean(anchorEl);
-  const [activeOrganizationId, setActiveOrganizationId] = React.useState(
-    localStorage.getItem("activeOrganizationId")
-  );
+
   const popoverOpen = Boolean(anchorEl);
   const id = popoverOpen ? "simple-popover" : undefined;
   const { container } = props;
@@ -302,8 +300,6 @@ const SideBar = ({
                 history={history}
                 activeCategoryId={activeCategoryId}
                 setActiveCategoryId={setActiveCategoryId}
-                activeOrganizationId={activeOrganizationId}
-                setActiveOrganizationId={setActiveOrganizationId}
               />
               {/* <List style={{ position: 'absolute', bottom: 0 }}>
                   <ListItem
@@ -368,8 +364,6 @@ const SideBar = ({
                 history={history}
                 activeCategoryId={activeCategoryId}
                 setActiveCategoryId={setActiveCategoryId}
-                activeOrganizationId={activeOrganizationId}
-                setActiveOrganizationId={setActiveOrganizationId}
               />
               {/* <AddBook /> */}
 

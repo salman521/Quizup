@@ -19,6 +19,8 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import AddCategory from "../AddCategory";
+import EditCategory from "../EditCategory";
+
 import { makeStyles } from "@material-ui/core/styles";
 import * as Colors from "../../styles/colors";
 // import AddBook from "../AddBook";
@@ -57,12 +59,11 @@ const DrawerCustom = ({
   setMobileOpen,
   mobileOpen,
   history,
-  setActiveOrganizationId,
-  activeOrganizationId,
   activeCategoryId,
   setActiveCategoryId,
   getCategories,
   categories,
+  deleteCategory,
   ...props
 }) => {
   const [addMemberBoxOpen, setAddMemberBoxOpen] = useState(false);
@@ -85,6 +86,10 @@ const DrawerCustom = ({
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const [openDialog, setOpen] = React.useState(false);
+  const [openEditCategoryDialog, setOpenEditCategoryDialog] = React.useState(
+    false
+  );
+
   const classes = useStyles();
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -100,6 +105,11 @@ const DrawerCustom = ({
   };
   return (
     <div>
+      <EditCategory
+        openEditCategoryDialog={openEditCategoryDialog}
+        activeCategoryId={activeCategoryId}
+        setOpenEditCategoryDialog={setOpenEditCategoryDialog}
+      />
       {/* ////////////////////////////////////// Popover Code Start////////////////////////////////// */}
       <Popover
         id={id}
@@ -115,6 +125,7 @@ const DrawerCustom = ({
         }}
         transformOrigin={{
           vertical: "top",
+
           horizontal: "right"
         }}
       >
@@ -126,76 +137,30 @@ const DrawerCustom = ({
             flexDirection: "column"
           }}
         >
-          {/* {admins && admins.find(a => a.id === localStorage.getItem("id")) && (
-            <Button
-              onClick={() => {
-                var data = {
-                  bookId: bookId,
-                  memberId
-                };
-                if (admins && admins.find(a => a.id === memberId)) {
-                  props
-                    .removeAdmin({
-                      variables: {
-                        bookId,
-                        memberId
-                      },
-                      refetchQueries: [
-                        {
-                          query: GET_BOOK,
-                          variables: {
-                            id: bookId
-                          }
-                        }
-                      ]
-                    })
-                    .then(res => {
-                      setAnchorEl(null);
-                    })
-                    .catch(err => {
-                      console.log(err);
-                      alert("Cannot Remove Admin");
-                    });
-                } else {
-                  props
-                    .makeAdmin({
-                      variables: {
-                        bookId,
-                        memberId
-                      },
-                      refetchQueries: [
-                        {
-                          query: GET_BOOK,
-                          variables: {
-                            id: bookId
-                          }
-                        }
-                      ]
-                    })
-                    .then(res => {
-                      setAnchorEl(null);
-                    })
-                    .catch(err => {
-                      console.log(err);
-                      alert("Cannot Make Admin");
-                    });
-                }
-              }}
-              customStyle={{
-                backgroundColor: Colors.TERTIARY,
-                color: Colors.TEXT_TERTIARY,
-                textAlign: "left"
-              }}
-              text={
-                admins && admins.find(a => a.id === memberId)
-                  ? "Remove Admin"
-                  : "Make Admin"
-              }
-            />
-          )} */}
-
           <Button
-            onClick={() => {}}
+            onClick={event => {
+              // setMemberId(member.id);
+              setOpenEditCategoryDialog(!openEditCategoryDialog);
+              setAnchorEl(null);
+            }}
+            customStyle={{
+              backgroundColor: Colors.TERTIARY,
+              color: Colors.TEXT_TERTIARY,
+              textAlign: "left"
+            }}
+            text={"Edit Category"}
+          />
+          <Button
+            onClick={() => {
+              deleteCategory(activeCategoryId)
+                .then(res => {
+                  getCategories().then(res => {
+                    setActiveCategoryId(res.value.data[0]._id);
+                    setAnchorEl(null);
+                  });
+                })
+                .catch(err => alert("Cannot delete Category"));
+            }}
             customStyle={{
               backgroundColor: Colors.TERTIARY,
               color: Colors.TEXT_TERTIARY,
