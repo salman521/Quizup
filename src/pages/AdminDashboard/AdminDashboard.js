@@ -36,7 +36,7 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
   }, [adminData === null]);
   return (
     <div>
-      <AppBar position="static">
+      {/* <AppBar>
         <Toolbar>
           <Typography variant="h6">Quiz Up</Typography>
           <Typography variant="h6" className={classes.title}>
@@ -45,6 +45,7 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
 
           <Button
             onClick={() => {
+              console.log(history, "sssss");
               localStorage.clear();
               history.push("/login");
             }}
@@ -53,23 +54,8 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
             Logout
           </Button>
         </Toolbar>
-      </AppBar>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignSelf: "center",
-          height: "30vh",
-          justifyContent: "space-around"
-        }}
-      >
-        {/* <Typography className="heading" variant="h2">
-          Welcome To Quiz App Admin Dashboard
-        </Typography> */}
-        <Typography className="heading" variant="h5">
-          {adminData.name}
-        </Typography>
-      </div>
+      </AppBar> */}
+
       <SideBar />
     </div>
   );

@@ -6,7 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import * as Colors from "../../styles/colors";
-
+import AddQuestion from "../AddQuestion";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
@@ -17,7 +17,7 @@ import {
   TextField,
   DialogTitle
 } from "@material-ui/core";
-
+import QuestionsBox from "../QuestionsBox";
 import {
   Button,
   MenuItem,
@@ -38,20 +38,14 @@ import moment from "moment";
 // import ReportsBox from "../ReportsBox";
 
 const BookDetail = ({
-  bookId,
-  setActiveBookId,
+  setActiveCategoryId,
+  activeCategoryId,
   handleDrawerToggle,
-  activeBookId,
   classes,
-  setBook,
+  // setBook,
   ...props
 }) => {
   const [open, setBoxOpen] = useState(false);
-  const [filterType, setFilterType] = useState("today");
-  const [transactionDate, setTransactionDate] = useState([
-    new Date(),
-    new Date()
-  ]);
 
   const handleClickOpenDialogs = () => {
     setOpen(true);
@@ -63,37 +57,13 @@ const BookDetail = ({
 
   const [openDialog, setOpen] = React.useState(false);
 
-  useEffect(() => {
-    setActiveBookId(props.data && props.data.getBook && props.data.getBook.id);
-  }, [props.data.getBook]);
+  // useEffect(() => {
+  //   setActiveBookId(props.data && props.data.getBook && props.data.getBook.id);
+  // }, [props.data.getBook]);
 
-  useEffect(() => {
-    if (filterType === "weekly") {
-      console.log(transactionDate, "ss");
-      var curr = new Date();
-      var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 1));
-      var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
-      setTransactionDate([firstday, lastday]);
-    } else if (filterType === "quarterly") {
-      var start = moment()
-        .quarter(moment().quarter())
-        .startOf("quarter")
-        .format();
-      var end = moment()
-        .quarter(moment().quarter())
-        .endOf("quarter")
-        .format();
-      setTransactionDate([start, end]);
-
-      // console.log(start, 's');
-      // console.log(end, 'e');
-    } else if (filterType === "today") {
-      setTransactionDate([new Date(), new Date()]);
-    }
-  }, [filterType]);
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ width: "100%" }}>
+    <div style={{ height: "100vh" }}>
+      <div style={{}}>
         <div
           className="addtransaction"
           style={{
@@ -115,20 +85,17 @@ const BookDetail = ({
             justifyContent='center'
             textAlign='left'> */}
 
-          {/* <AddTransaction
+          <AddQuestion
             open={open}
-            members={props.data.getBook && props.data.getBook.members}
-            data={props.data && props.data.getBook}
-            transactionDate={transactionDate}
-            bookDetail={props.data && props.data.getBook}
+            activeCategoryId={activeCategoryId}
             handleClose={() => {
               setBoxOpen(!open);
             }}
-          /> */}
+          />
 
           {/* </Box> */}
 
-          <span>Add Transaction</span>
+          <span>Add Question</span>
           <Fab
             // color={Colors.PRIMARY}
             style={{
@@ -152,29 +119,20 @@ const BookDetail = ({
             setSelectedBox={setSelectedBox}
           /> */}
         </div>
-        {/* <div
+        <h1>Question Box</h1>
+
+        <div
           style={{
             padding: "4%",
             height: "90vh",
-            paddingBottom: "50px",
-            overflow: "auto"
+            paddingBottom: "80px",
+            overflow: "scroll"
             // borderTop: '1px solid lightgrey',
-            // borderBottom: '1px solid lightgrey'
+            // border: "1px solid red"
           }}
         >
-          {selectedBox === "transactions" && (
-            <TransactionsBox
-              bookName={props.data.getBook && props.data.getBook.bookName}
-              balance={props.data.getBook && props.data.getBook.balance}
-              bookId={bookId && bookId}
-              filterType={filterType}
-              transactionDate={transactionDate}
-              setInflow={setInflow}
-              setOutflow={setOutflow}
-            />
-          )}
-          {selectedBox === "reports" && <ReportsBox />}
-        </div> */}
+          <QuestionsBox activeCategoryId={activeCategoryId} />
+        </div>
       </div>
       {/* <RightBar
         bookId={bookId}

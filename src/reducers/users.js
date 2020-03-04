@@ -2,7 +2,7 @@ import { UserActions, Suffixes } from "../actionTypes";
 
 const initalState = {
   loading: false,
-  userData: {}
+  userData: null
 };
 
 export default (state = initalState, action) => {

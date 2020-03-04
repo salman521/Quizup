@@ -3,7 +3,7 @@ import React, { Component, useState, useEffect, useC } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import createHistory from "history/createBrowserHistory";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { connect } from "react-redux";
@@ -17,7 +17,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AuthRoute from "./auth/AuthRoute";
 import OpenRoute from "./auth/OpenRoute";
 
-const history = createBrowserHistory();
+const history = createHistory();
 
 const AppRouter = ({ userType, ...props }) => {
   //   const { users, organization } = props;

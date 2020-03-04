@@ -2,7 +2,7 @@ import { AdminActions, Suffixes } from "../actionTypes";
 
 const initalState = {
   loading: false,
-  adminData: {}
+  adminData: null
 };
 
 export default (state = initalState, action) => {

@@ -72,6 +72,7 @@ const SideBar = ({
   history,
   userData,
   setMobileOpen,
+  setUserType,
   ...props
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -96,43 +97,6 @@ const SideBar = ({
     setMobileOpen(!mobileOpen);
   };
   const [activeCategoryId, setActiveCategoryId] = useState();
-  // !getBooks.loading &&
-  //   getBooks.getBooks &&
-  //   getBooks.getBooks.length >= 1 &&
-  //   getBooks.getBooks[0].id
-
-  // useEffect(() => {
-  //   setActiveBookId(
-  //     !getBooks.loading &&
-  //       getBooks.getBooks &&
-  //       getBooks.getBooks.length >= 1 &&
-  //       getBooks.getBooks[0].id
-  //   );
-  // }, [getBooks]);
-
-  // useEffect(() => {
-  //   setOrganization(
-  //     userData &&
-  //       userData.organization.find(o => o._id === activeOrganizationId)
-  //   );
-  // }, [activeOrganizationId]);
-  // useEffect(() => {
-  //   setActiveBookId(
-  //     !getBooks.loading &&
-  //       getBooks.getBooks &&
-  //       getBooks.getBooks.length >= 1 &&
-  //       getBooks.getBooks[0].id
-  //   );
-  // }, [localStorage.getItem("activeOrganizationId")]);
-
-  // const setBook = () => {
-  //   setActiveBookId(
-  //     !getBooks.loading &&
-  //       getBooks.getBooks &&
-  //       getBooks.getBooks.length >= 1 &&
-  //       getBooks.getBooks[0].id
-  //   );
-  // };
 
   return (
     <div className="sidebar">
@@ -162,80 +126,12 @@ const SideBar = ({
           }}
         >
           <div className="sidebar__settings">
-            {/* ///////////////////////////////////////////// Create Organization ////////////////////////////////// */}
-            <div
-              onClick={() => {
-                history.push("/addorganization");
-              }}
-              className="sidebar__settings--container"
-            >
-              {/* <img
-                src={require('../../Image/profile.png')}
-                width='auto'
-                height='25'
-                style={{ marginRight: '12px' }}
-                alt='Logo'
-              /> */}
-              <div className="sidebar__settings--button">
-                Create Organization
-              </div>
-              <img
-                src={require("../../Image/createOrganization.png")}
-                width="auto"
-                height="15"
-                // style={{ marginRight: '12px' }}
-                alt="Logo"
-              />
-            </div>
-            {/* ///////////////////////////////////////////// Invite TeamMates ////////////////////////////////// */}
-            {/* <AddOrganizationMember
-                setOpen={addMemberBoxOpen}
-                organizationName={organization && organization.organizationName}
-                setClose={() => {
-                  setAddMemberBoxOpen(false);
-                  setAnchorEl(null);
-                }}
-              /> */}
-            <div
-              onClick={() => {
-                // localStorage.clear();
-                setAddMemberBoxOpen(true);
-              }}
-              className="sidebar__settings--container"
-            >
-              <div className="sidebar__settings--button">Invite Teammates</div>
-              <img
-                src={require("../../Image/invite.png")}
-                width="auto"
-                height="15"
-                // style={{ marginRight: '12px' }}
-                alt="Logo"
-              />
-            </div>
-            {/* ///////////////////////////////////////////// Advanced Settings ////////////////////////////////// */}
-
-            <div
-              onClick={() => {
-                // localStorage.clear();
-                alert("Development in progress");
-                // setAddMemberBoxOpen(true);
-              }}
-              className="sidebar__settings--container"
-            >
-              <div className="sidebar__settings--button">Advanced Settings</div>
-              <img
-                src={require("../../Image/advancedSettings.png")}
-                width="auto"
-                height="15"
-                // style={{ marginRight: '12px' }}
-                alt="Logo"
-              />
-            </div>
             {/* ///////////////////////////////////////////// Logout ////////////////////////////////// */}
             <div
               onClick={() => {
                 localStorage.clear();
-                history.push("/login");
+                setUserType("");
+                history && history.push("/login");
               }}
               className="sidebar__settings--container"
             >
@@ -259,21 +155,6 @@ const SideBar = ({
         </Popover>
         {/* ////////////////////////////////////// Popover Code End ////////////////////////////////// */}
 
-        {/* <AppBar position='fixed' className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color='inherit'
-                aria-label='open drawer'
-                edge='start'
-                // onClick={handleDrawerToggle}
-                className={classes.menuButton}>
-                <MenuIcon />
-              </IconButton>
-              <Typography variant='h6' noWrap>
-                Responsive drawer
-              </Typography>
-            </Toolbar>
-          </AppBar> */}
         <CssBaseline />
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -395,24 +276,17 @@ const SideBar = ({
             </Drawer>
           </Hidden>
         </nav>
-        {/* {!getBooks.loading && (
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            <BookDetail
-              bookId={
-                activeBookId
-                  ? activeBookId
-                  : getBooks.getBooks &&
-                    getBooks.getBooks.length > 1 &&
-                    getBooks.getBooks[0].id
-              }
-              handleDrawerToggle={handleDrawerToggle}
-              setBook={setBook}
-              setActiveBookId={setActiveBookId}
-              classes={classes}
-            />
-          </main>
-        )} */}
+
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <BookDetail
+            activeCategoryId={activeCategoryId}
+            handleDrawerToggle={handleDrawerToggle}
+            // setBook={setBook}
+            setActiveCategoryId={setActiveCategoryId}
+            classes={classes}
+          />
+        </main>
       </div>
     </div>
   );
