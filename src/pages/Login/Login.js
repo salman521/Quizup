@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 
-const Login = ({ history, login, ...props }) => {
+const Login = ({ history, login, setUserType, ...props }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   return (
@@ -80,7 +80,9 @@ const Login = ({ history, login, ...props }) => {
                 var data = { email, password };
                 login(data)
                   .then(res => {
+                    setUserType("user");
                     localStorage.setItem("id", res.value.data._id);
+                    localStorage.setItem("userType", "user");
                     history.push("/home");
                   })
                   .catch(err => {

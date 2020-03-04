@@ -3,6 +3,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   PORT = 5000,
   userRoutes = require("./routes/users"),
+  categoryRoutes = require("./routes/category"),
   adminRoutes = require("./routes/admins");
 
 var cors = require("cors");
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", userRoutes);
 app.use("/admins", adminRoutes);
+app.use("/categories", categoryRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Quiz Up Api!!");
