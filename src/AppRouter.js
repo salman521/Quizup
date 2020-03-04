@@ -15,6 +15,8 @@ import Home from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashboard";
 
 import AuthRoute from "./auth/AuthRoute";
+import AdminRoute from "./auth/AdminRoute";
+
 import OpenRoute from "./auth/OpenRoute";
 
 const history = createHistory();
@@ -34,71 +36,72 @@ const AppRouter = ({ userType, ...props }) => {
 
   //   alert(loggedIn);
 
-  if (localStorage.getItem("userType") === "user" || userType === "user") {
-    // alert("user");
-    return (
-      <BrowserRouter history={history}>
-        <Switch>
-          <Route path="/home" component={Home} exact />
-          {/* <OpenRoute path="/signup" component={Signup} exact />
-          <OpenRoute path="/login" component={Login} exact />
-          <OpenRoute path="/adminlogin" component={AdminLogin} exact /> */}
+  // if (localStorage.getItem("userType") === "user" || userType === "user") {
+  // alert("user");
+  return (
+    <BrowserRouter history={history}>
+      <Switch>
+        <AuthRoute path="/home" component={Home} exact />
+        <OpenRoute path="/signup" component={Signup} exact />
+        <OpenRoute path="/adminlogin" component={AdminLogin} exact />
+        <OpenRoute path="/login" component={Login} exact />
+        <AdminRoute path="/admindashboard" component={AdminDashboard} exact />
 
-          {/* <OpenRoute path="/newuser" component={NewUser} exact /> */}
-          {/* <AuthRoute
+        {/* <OpenRoute path="/newuser" component={NewUser} exact /> */}
+        {/* <AuthRoute
             path="/home"
             exact
             component={Home}
             isAuthenticated={true}
           /> */}
 
-          {/* <AuthRoute
+        {/* <AuthRoute
             path="/addorganization"
             exact
             component={AddOrganization}
             isAuthenticated={loggedIn}
           /> */}
-          {/* <AuthRoute
+        {/* <AuthRoute
             path="/"
             exact
             component={Home}
             isAuthenticated={loggedIn}
           /> */}
 
-          <Redirect from="/:anything" to="/home" />
-        </Switch>
-      </BrowserRouter>
-    );
-  } else if (
-    localStorage.getItem("userType") === "admin" ||
-    userType === "admin"
-  ) {
-    // alert("admin");
-    return (
-      <BrowserRouter history={history}>
-        <Switch>
-          <Route path="/admindashboard" component={AdminDashboard} exact />
+        <Redirect from="/:anything" to="/login" />
+      </Switch>
+    </BrowserRouter>
+  );
+  // } else if (
+  //   localStorage.getItem("userType") === "admin" ||
+  //   userType === "admin"
+  // ) {
+  //   // alert("admin");
+  //   return (
+  //     <BrowserRouter history={history}>
+  //       <Switch>
+  //         <Route path="/admindashboard" component={AdminDashboard} exact />
 
-          <Redirect from="/:anything" to="/admindashboard" />
-        </Switch>
-      </BrowserRouter>
-    );
-  } else {
-    return (
-      <BrowserRouter history={history}>
-        <Switch>
-          <Route path="/signup" component={Signup} exact />
-          <Route path="/login" component={Login} exact />
-          <Route path="/adminlogin" component={AdminLogin} exact />
+  //         <Redirect from="/:anything" to="/admindashboard" />
+  //       </Switch>
+  //     </BrowserRouter>
+  //   );
+  // } else {
+  //   return (
+  //     <BrowserRouter history={history}>
+  //       <Switch>
+  //         <Route path="/signup" component={Signup} exact />
+  //         <Route path="/login" component={Login} exact />
+  //         <Route path="/adminlogin" component={AdminLogin} exact />
 
-          {/* <OpenRoute path="/signup" component={Signup} exact />
-          <OpenRoute path="/login" component={Login} exact />
-          <OpenRoute path="/adminlogin" component={AdminLogin} exact /> */}
-          <Redirect from="/:anything" to="/login" />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
+  //         {/* <OpenRoute path="/signup" component={Signup} exact />
+  //         <OpenRoute path="/login" component={Login} exact />
+  //         <OpenRoute path="/adminlogin" component={AdminLogin} exact /> */}
+  //         <Redirect from="/:anything" to="/login" />
+  //       </Switch>
+  //     </BrowserRouter>
+  //   );
+  // }
 };
 
 const mapStateToProps = ({ users, admins, common }) => ({

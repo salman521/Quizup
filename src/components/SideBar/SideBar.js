@@ -131,17 +131,10 @@ const SideBar = ({
               onClick={() => {
                 localStorage.clear();
                 setUserType("");
-                history && history.push("/login");
+                history.push("/login");
               }}
               className="sidebar__settings--container"
             >
-              {/* <img
-                src={require('../../Image/profile.png')}
-                width='auto'
-                height='25'
-                style={{ marginRight: '12px' }}
-                alt='Logo'
-              /> */}
               <div className="sidebar__settings--button">Logout</div>
               <img
                 src={require("../../Image/logout.png")}

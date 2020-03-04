@@ -73,7 +73,7 @@ const Home = ({ history, getUser, userData, ...props }) => {
           Welcome To Quiz App Dashboard
         </Typography>
         <Typography className="heading" variant="h5">
-          {userData.name}
+          {userData && userData.name}
         </Typography>
       </div>
     </div>

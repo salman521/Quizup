@@ -6,7 +6,7 @@ const AuthRoute = ({ component: Component, isAuthenticated, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        localStorage.getItem("userType") === "user" ? (
+        localStorage.getItem("userType") === "admin" ? (
           <Component {...props} />
         ) : (
           <Redirect from="/:anything" to="/login" />

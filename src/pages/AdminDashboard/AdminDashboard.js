@@ -56,7 +56,7 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
         </Toolbar>
       </AppBar> */}
 
-      <SideBar />
+      <SideBar history={history} />
     </div>
   );
 };
