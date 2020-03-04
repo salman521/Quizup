@@ -36,7 +36,7 @@ const QuestionsBox = ({
 
   return (
     <div className="questionsBox">
-      <h4>{activeCategoryId}</h4>
+      {/* <h4>{activeCategoryId}</h4> */}
       {quizQuestions &&
         quizQuestions.map((question, index) => {
           return (

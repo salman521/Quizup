@@ -163,7 +163,7 @@ const EditCategory = ({
               color: Colors.TEXT_PRIMARY,
               textAlign: "center"
             }}
-            text="Add"
+            text="Update"
           />
         </div>
       </DialogContent>

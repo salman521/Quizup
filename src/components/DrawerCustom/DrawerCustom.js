@@ -54,7 +54,7 @@ const useStyles = makeStyles({
 });
 
 const DrawerCustom = ({
-  getBooks,
+  adminData,
   userData,
   setMobileOpen,
   mobileOpen,
@@ -224,7 +224,7 @@ const DrawerCustom = ({
             >
               <span
                 style={{
-                  fontSize: 20,
+                  fontSize: 17,
                   color: Colors.TEXT_PRIMARY,
                   display: "flex",
                   flexDirection: "row",
@@ -232,22 +232,7 @@ const DrawerCustom = ({
                   alignItems: "center"
                 }}
               >
-                {organization ? organization.organizationName : "No Org"}
-                <div
-                  // value={member.firstName}
-                  onClick={event => {
-                    // setMemberId(member.id);
-                    setAnchorEl(event.currentTarget);
-                  }}
-                >
-                  <img
-                    src={require("../../Image/dropdownWhite.png")}
-                    width="15"
-                    height="10"
-                    style={{ marginRight: "7px" }}
-                    alt="Logo"
-                  />
-                </div>
+                {adminData ? adminData.name : "No Org"}
               </span>
 
               {userData && userData.firstName + " " + userData.lastName}

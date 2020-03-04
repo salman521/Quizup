@@ -119,7 +119,7 @@ const BookDetail = ({
             setSelectedBox={setSelectedBox}
           /> */}
         </div>
-        <h1>Question Box</h1>
+        <h1>Questions</h1>
 
         <div
           style={{

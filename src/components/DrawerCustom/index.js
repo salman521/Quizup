@@ -5,8 +5,9 @@ import { getCategories, deleteCategory } from "../../actions/category";
 
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';
 
-const mapStateToProps = ({ category }) => ({
-  categories: category.categories
+const mapStateToProps = ({ category, admins }) => ({
+  categories: category.categories,
+  adminData: admins.adminData
 });
 
 const mapDispatchToProps = dispatch => ({

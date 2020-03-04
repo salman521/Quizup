@@ -380,7 +380,7 @@ const EditQuestion = ({
                 color: Colors.TEXT_PRIMARY,
                 textAlign: "center"
               }}
-              text="Add"
+              text="Update"
             />
           </div>
         </div>
