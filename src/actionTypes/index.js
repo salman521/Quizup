@@ -5,6 +5,7 @@ import * as AdminActions from "./admin";
 import * as CommonActions from "./common";
 import * as CategoryActions from "./category";
 import * as QuestionActions from "./question";
+import * as QuizActions from "./quiz";
 
 export {
   Suffixes,
@@ -12,5 +13,6 @@ export {
   AdminActions,
   CommonActions,
   CategoryActions,
-  QuestionActions
+  QuestionActions,
+  QuizActions
 };

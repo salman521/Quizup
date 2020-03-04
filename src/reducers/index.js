@@ -5,17 +5,15 @@ import admins from "./admins";
 import common from "./common";
 import category from "./category";
 import question from "./question";
-
-// import business from './business';
+import quiz from "./quiz";
 
 const reducers = {
-  // routing: routerReducer,
   users,
   admins,
   common,
   category,
-  question
-  // business
+  question,
+  quiz
 };
 
 export default combineReducers(reducers);
