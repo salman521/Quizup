@@ -16,11 +16,9 @@ export const postQuiz = data => {
     payload: axios.post("http://localhost:5000/quiz", data)
   };
 };
-// export const getAdmin = () => {
-//   const id = localStorage.getItem("id");
-
-//   return {
-//     type: `${AdminActions.GET_ADMIN}`,
-//     payload: axios.get(`http://localhost:5000/admins/getAdmin/${id}`)
-//   };
-// };
+export const getUserQuizes = id => {
+  return {
+    type: `${QuizActions.GET_USER_QUIZES}`,
+    payload: axios.get(`http://localhost:5000/quiz/${id}`)
+  };
+};

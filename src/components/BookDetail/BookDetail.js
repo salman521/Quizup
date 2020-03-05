@@ -26,7 +26,9 @@ import {
   Fab,
   InputLabel
 } from "@material-ui/core";
+import NavBar from "../NavBar";
 import AddIcon from "@material-ui/icons/Add";
+import History from "../History";
 
 // import AddBookMember from "../AddBookMember/AddBookMember";
 // import BookMembers from "../BookMembers";
@@ -51,7 +53,7 @@ const BookDetail = ({
     setOpen(true);
   };
 
-  const [selectedBox, setSelectedBox] = React.useState("transactions");
+  const [selectedBox, setSelectedBox] = React.useState("questions");
   const [inflow, setInflow] = React.useState(0);
   const [outflow, setOutflow] = React.useState(0);
 
@@ -70,7 +72,7 @@ const BookDetail = ({
             position: "absolute",
             // left: '54vw',
             bottom: "4vh",
-            right: "22vw",
+            right: "8vw",
             minWidth: "15vw",
             display: "flex",
             // borderRadius: '20px',
@@ -112,26 +114,28 @@ const BookDetail = ({
         </div>
         <div>
           {/* <h3>{props.data.getBook && props.data.getBook.bookName}</h3> */}
-          {/* <NavBar
+          <NavBar
             handleDrawerToggle={handleDrawerToggle}
             selectedBox={selectedBox}
             classes={classes}
             setSelectedBox={setSelectedBox}
-          /> */}
+          />
         </div>
-        <h1>Questions</h1>
+        <h1>
+          {selectedBox === "questions" ? "Questions" : "Users Quiz History"}
+        </h1>
 
         <div
           style={{
-            padding: "4%",
-            height: "90vh",
+            height: "85vh",
             paddingBottom: "80px",
             overflow: "scroll"
-            // borderTop: '1px solid lightgrey',
-            // border: "1px solid red"
           }}
         >
-          <QuestionsBox activeCategoryId={activeCategoryId} />
+          {selectedBox === "questions" && (
+            <QuestionsBox activeCategoryId={activeCategoryId} />
+          )}
+          {selectedBox === "history" && <History />}
         </div>
       </div>
       {/* <RightBar

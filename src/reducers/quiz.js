@@ -2,7 +2,8 @@ import { QuizActions, Suffixes } from "../actionTypes";
 
 const initalState = {
   category: "",
-  marks: 0
+  marks: 0,
+  userQuizzes: []
 };
 
 export default (state = initalState, action) => {
@@ -36,42 +37,25 @@ export default (state = initalState, action) => {
         loading: false
         // data: {}
       };
-    // case `${UserActions.USER_LOGIN}_${Suffixes.REQUEST}`:
-    //   return {
-    //     ...state,
-    //     userData: {},
-    //     loading: true
-    //   };
-    // case `${UserActions.USER_LOGIN}_${Suffixes.SUCCESS}`:
-    //   return {
-    //     ...state,
-    //     userData: action.payload.data,
-    //     loading: false
-    //   };
-    // case `${UserActions.USER_LOGIN}_${Suffixes.FAILURE}`:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     userData: {}
-    //   };
-    // case `${UserActions.GET_USER}_${Suffixes.REQUEST}`:
-    //   return {
-    //     ...state,
-    //     userData: {},
-    //     loading: true
-    //   };
-    // case `${UserActions.GET_USER}_${Suffixes.SUCCESS}`:
-    //   return {
-    //     ...state,
-    //     userData: action.payload.data,
-    //     loading: false
-    //   };
-    // case `${UserActions.GET_USER}_${Suffixes.FAILURE}`:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     userData: {}
-    //   };
+    case `${QuizActions.GET_USER_QUIZES}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        userQuizzes: [],
+        loading: true
+      };
+    case `${QuizActions.GET_USER_QUIZES}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        userQuizzes: action.payload.data,
+        loading: false
+      };
+    case `${QuizActions.GET_USER_QUIZES}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false,
+        userQuizzes: []
+      };
+
     default:
       return state;
   }

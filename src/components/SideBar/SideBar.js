@@ -126,14 +126,31 @@ const SideBar = ({
           }}
         >
           <div className="sidebar__settings">
+            {/* ///////////////////////////////////////////// History ////////////////////////////////// */}
+            <div
+              onClick={() => {
+                history.push("/login");
+              }}
+              className="sidebar__settings--container"
+            >
+              <div className="sidebar__settings--button">History</div>
+              <img
+                src={require("../../Image/calendar.png")}
+                width="auto"
+                height="15"
+                // style={{ marginRight: '12px' }}
+                alt="Logo"
+              />
+            </div>
             {/* ///////////////////////////////////////////// Logout ////////////////////////////////// */}
+
             <div
               onClick={() => {
                 localStorage.clear();
                 setUserType("");
                 history.push("/login");
               }}
-              className="sidebar__settings--container"
+              className="sidebar__settings--container--last"
             >
               <div className="sidebar__settings--button">Logout</div>
               <img
