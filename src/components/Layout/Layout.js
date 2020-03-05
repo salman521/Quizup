@@ -8,7 +8,7 @@ const HeadBar = styled.div`
   background: ${Colors.TERTIARY};
   display: flex;
   height: 60px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 0 20px;
   position: -webkit-sticky;
@@ -46,25 +46,51 @@ const Layout = props => {
   return (
     <>
       <HeadBar>
-        <Link style={{ textDecoration: "none" }} to="/home">
+        <Link
+          style={{
+            textDecoration: "none",
+            display: "inline-flex",
+            width: "75%"
+          }}
+          to="/home"
+        >
           <SiteTitle>Quiz App</SiteTitle>
         </Link>
         {/* <SiteTitle>Quiz App</SiteTitle> */}
 
-        <Navigation>
-          {/* <Link to="/">
-            <Button>Home</Button>
-          </Link>
-          <Link to="/contact">
-            <Button>Contact Us</Button>
-          </Link>
-          <Link to="/privacypolicy">
-            <Button>Privacy Policy</Button>
-          </Link> */}
+        <Navigation
+          style={{
+            width: "25%",
+            backgroundColor: Colors.TERTIARY
+          }}
+        >
           <Link
             style={{
               textDecoration: "none",
               // borderRadius: 12,
+              backgroundColor: Colors.TERTIARY
+            }}
+            to="/login"
+          >
+            <Button
+              onClick={() => {
+                // localStorage.clear();
+              }}
+              customStyle={{
+                backgroundColor: Colors.SECONDARY,
+                minWidth: 140,
+                borderRadius: 12,
+                color: Colors.TEXT_SECONDARY,
+                textAlign: "center"
+              }}
+              text="History"
+            />
+          </Link>
+          <Link
+            style={{
+              textDecoration: "none",
+              // borderRadius: 12,
+              paddingLeft: 30,
               backgroundColor: Colors.TERTIARY
             }}
             to="/login"
@@ -76,7 +102,6 @@ const Layout = props => {
               customStyle={{
                 backgroundColor: Colors.SECONDARY,
                 minWidth: 140,
-
                 borderRadius: 12,
                 color: Colors.TEXT_SECONDARY,
                 textAlign: "center"

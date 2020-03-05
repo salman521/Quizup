@@ -33,11 +33,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: Colors.SECONDARY
   }
 }));
-const QuizResult = ({ history, marks, category, quizQuestions, ...props }) => {
+const QuizResult = ({ history, quizQuestions, ...props }) => {
   // const [marks, setMarks] = useState(0);
-
+  const { marks, totalMarks } = history.location.state;
   const classes = useStyles();
-
+  console.log(history, "ssss");
   useEffect(() => {
     if (quizQuestions.length > 0) {
       // setQuestionIndex(0);
@@ -73,7 +73,9 @@ const QuizResult = ({ history, marks, category, quizQuestions, ...props }) => {
                 alignItems: "center"
               }}
             >
-              <span>You got {marks + " "} marks</span>
+              <span>
+                You got {marks + " "} marks out of {" " + totalMarks}
+              </span>
             </div>
             <div className="data-Input">
               {/* <div>

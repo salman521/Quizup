@@ -104,7 +104,10 @@ const Quiz = ({
             };
             postQuiz(data)
               .then(result => {
-                history.push("/quizresult");
+                history.push("/quizresult", {
+                  marks: marks,
+                  totalMarks: questionNumber * 10 - 10
+                });
               })
               .catch(err => {
                 alert("Could not post quiz result");
