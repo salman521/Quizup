@@ -101,15 +101,19 @@ const Signup = ({ history, signUp, ...props }) => {
             <Button
               className="button-Signup"
               onClick={() => {
-                var data = { email, password, name };
-                console.log(data, "ss");
-                signUp(data)
-                  .then(res => {
-                    history.push("/login");
-                  })
-                  .catch(err => {
-                    alert("Opps Cannot Signup");
-                  });
+                if (email && password && name !== "") {
+                  var data = { email, password, name };
+                  console.log(data, "ss");
+                  signUp(data)
+                    .then(res => {
+                      history.push("/login");
+                    })
+                    .catch(err => {
+                      alert("Opps Cannot Signup");
+                    });
+                } else {
+                  alert("Please fill all fields");
+                }
               }}
             >
               Sign Up

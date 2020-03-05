@@ -65,53 +65,55 @@ const BookDetail = ({
 
   return (
     <div style={{ height: "100vh" }}>
-      <div style={{}}>
-        <div
-          className="addtransaction"
-          style={{
-            position: "absolute",
-            // left: '54vw',
-            bottom: "4vh",
-            right: "8vw",
-            minWidth: "15vw",
-            display: "flex",
-            // borderRadius: '20px',
-            justifyContent: "space-evenly",
-            alignItems: "center"
-          }}
-        >
-          {/* <Box
+      <div>
+        {selectedBox === "questions" && (
+          <div
+            className="addtransaction"
+            style={{
+              position: "absolute",
+              // left: '54vw',
+              bottom: "4vh",
+              right: "8vw",
+              minWidth: "15vw",
+              display: "flex",
+              // borderRadius: '20px',
+              justifyContent: "space-evenly",
+              alignItems: "center"
+            }}
+          >
+            {/* <Box
             display='flex'
             flexDirection='column'
             // style={{ borderRadius: 20 }}
             justifyContent='center'
             textAlign='left'> */}
 
-          <AddQuestion
-            open={open}
-            activeCategoryId={activeCategoryId && activeCategoryId}
-            handleClose={() => {
-              setBoxOpen(!open);
-            }}
-          />
+            <AddQuestion
+              open={open}
+              activeCategoryId={activeCategoryId && activeCategoryId}
+              handleClose={() => {
+                setBoxOpen(!open);
+              }}
+            />
 
-          {/* </Box> */}
+            {/* </Box> */}
 
-          <span>Add Question</span>
-          <Fab
-            // color={Colors.PRIMARY}
-            style={{
-              backgroundColor: Colors.FOCUSED,
-              boxShadow: `0px 0px 8px ${Colors.FOCUSED}`
-            }}
-            aria-label="add"
-            onClick={() => {
-              setBoxOpen(!open);
-            }}
-          >
-            <AddIcon />
-          </Fab>
-        </div>
+            <span>Add Question</span>
+            <Fab
+              // color={Colors.PRIMARY}
+              style={{
+                backgroundColor: Colors.FOCUSED,
+                boxShadow: `0px 0px 8px ${Colors.FOCUSED}`
+              }}
+              aria-label="add"
+              onClick={() => {
+                setBoxOpen(!open);
+              }}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
+        )}
         <div>
           {/* <h3>{props.data.getBook && props.data.getBook.bookName}</h3> */}
           <NavBar
@@ -135,7 +137,9 @@ const BookDetail = ({
           {selectedBox === "questions" && (
             <QuestionsBox activeCategoryId={activeCategoryId} />
           )}
-          {selectedBox === "history" && <History />}
+          {selectedBox === "history" && (
+            <History activeCategoryId={activeCategoryId} />
+          )}
         </div>
       </div>
       {/* <RightBar

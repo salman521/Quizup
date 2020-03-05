@@ -3,7 +3,11 @@ const moment = require("moment");
 
 var QuizSchema = mongoose.Schema(
   {
-    marks: {
+    totalMarks: {
+      type: Number,
+      required: true
+    },
+    obtainedMarks: {
       type: Number,
       required: true
     },

@@ -59,20 +59,20 @@ const AddCategory = ({
     setOpen(true);
   };
   const [categoryName, setCategoryName] = useState("");
-  const [description, setDescription] = useState("");
 
-  const [canAddMoney, setCanAddMoney] = useState(false);
-  const [canSendMoney, setCanSendMoney] = useState(false);
-  const classes = useStyles();
   const handleCloseDialogs = () => {
-    addCategory(categoryName)
-      .then(res => {
-        getCategories().then(response => {
-          setCategoryName("");
-          setOpen(false);
-        });
-      })
-      .catch(err => alert("Cannot Add Category"));
+    if (categoryName !== "") {
+      addCategory(categoryName)
+        .then(res => {
+          getCategories().then(response => {
+            setCategoryName("");
+            setOpen(false);
+          });
+        })
+        .catch(err => alert("Cannot Add Category"));
+    } else {
+      alert("Please Enter Category Name");
+    }
   };
   return (
     <Dialog

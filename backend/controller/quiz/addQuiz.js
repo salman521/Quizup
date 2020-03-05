@@ -2,9 +2,10 @@ var { Quiz } = require("../../models/quiz");
 
 var addQuiz = async (req, res, next) => {
   try {
-    const { marks, category, userId } = req.body;
+    const { totalMarks, obtainedMarks, category, userId } = req.body;
     var data = await new Quiz({
-      marks,
+      totalMarks,
+      obtainedMarks,
       category,
       userId
     });

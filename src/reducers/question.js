@@ -3,7 +3,7 @@ import { QuestionActions, Suffixes } from "../actionTypes";
 const initalState = {
   questionData: {
     question: "",
-    answerindex: 0,
+    answerindex: -1,
     answers: [
       {
         option: ""

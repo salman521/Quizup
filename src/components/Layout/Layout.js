@@ -8,7 +8,7 @@ const HeadBar = styled.div`
   background: ${Colors.TERTIARY};
   display: flex;
   height: 60px;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   position: -webkit-sticky;
@@ -48,9 +48,7 @@ const Layout = props => {
       <HeadBar>
         <Link
           style={{
-            textDecoration: "none",
-            display: "inline-flex",
-            width: "75%"
+            textDecoration: "none"
           }}
           to="/home"
         >
@@ -60,11 +58,10 @@ const Layout = props => {
 
         <Navigation
           style={{
-            width: "25%",
             backgroundColor: Colors.TERTIARY
           }}
         >
-          <Link
+          {/* <Link
             style={{
               textDecoration: "none",
               // borderRadius: 12,
@@ -85,7 +82,7 @@ const Layout = props => {
               }}
               text="History"
             />
-          </Link>
+          </Link> */}
           <Link
             style={{
               textDecoration: "none",

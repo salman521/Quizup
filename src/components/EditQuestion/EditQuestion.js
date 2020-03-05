@@ -69,27 +69,38 @@ const EditQuestion = ({
   const [optionD, setOptionD] = useState(questionData.answers[3].option);
 
   const handleCloseDialogs = () => {
-    var data = {
-      id: questionData._id,
-      question,
-      answerindex,
-      answers: [
-        { option: optionA },
-        { option: optionB },
-        { option: optionC },
-        { option: optionD }
-      ]
-    };
+    if (
+      question &&
+      optionA &&
+      optionB &&
+      optionC &&
+      optionD !== "" &&
+      answerindex !== -1
+    ) {
+      var data = {
+        id: questionData._id,
+        question,
+        answerindex,
+        answers: [
+          { option: optionA },
+          { option: optionB },
+          { option: optionC },
+          { option: optionD }
+        ]
+      };
 
-    putQuestion(data)
-      .then(res => {
-        getQuestions(activeCategoryId).then(res => {
-          handleClose();
+      putQuestion(data)
+        .then(res => {
+          getQuestions(activeCategoryId).then(res => {
+            handleClose();
+          });
+        })
+        .catch(err => {
+          alert("cannot add question");
         });
-      })
-      .catch(err => {
-        alert("cannot add question");
-      });
+    } else {
+      alert("Please fill all fields");
+    }
   };
 
   return (

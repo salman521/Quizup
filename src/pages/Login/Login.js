@@ -9,10 +9,27 @@ import {
   Divider
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    // flexGrow: 1
+    width: 120
+  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2)
+  // },
+
+  text: {
+    fontSize: 13,
+    color: Colors.TEXT_SECONDARY,
+    backgroundColor: Colors.SECONDARY
+  }
+}));
 const Login = ({ history, login, setUserType, ...props }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const classes = useStyles();
+  const [password, setPassword] = useState("");
   return (
     <div
       style={{
@@ -74,26 +91,43 @@ const Login = ({ history, login, setUserType, ...props }) => {
             />
           </div>
           {/* <Button>Forgot Password?</Button> */}
-          <Grid>
+          <Grid
+            style={{
+              // border: "2px solid red",
+              display: "flex",
+              paddingTop: 10,
+              justifyContent: "space-evenly"
+            }}
+          >
             <Button
+              classes={classes}
               onClick={() => {
-                var data = { email, password };
-                login(data)
-                  .then(res => {
-                    setUserType("user");
-                    localStorage.setItem("id", res.value.data._id);
-                    localStorage.setItem("userType", "user");
-                    history.push("/home");
-                  })
-                  .catch(err => {
-                    alert("Email or Password incorrect");
-                  });
+                if (email && password !== "") {
+                  var data = { email, password };
+                  login(data)
+                    .then(res => {
+                      setUserType("user");
+                      localStorage.setItem("id", res.value.data._id);
+                      localStorage.setItem("userType", "user");
+                      history.push("/home");
+                    })
+                    .catch(err => {
+                      alert("Email or Password incorrect");
+                    });
+                } else {
+                  alert(
+                    email === ""
+                      ? "Please Enter Email"
+                      : "Please Enter Password"
+                  );
+                }
               }}
               className=" button-Login"
             >
               Login
             </Button>
             <Button
+              classes={classes}
               onClick={() => {
                 history.push("/signup");
               }}
@@ -103,6 +137,7 @@ const Login = ({ history, login, setUserType, ...props }) => {
             </Button>
 
             <Button
+              classes={classes}
               onClick={() => {
                 history.push("/adminlogin");
               }}

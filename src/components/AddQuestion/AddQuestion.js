@@ -66,16 +66,29 @@ const AddQuestion = ({
   const classes = useStyles();
 
   const handleCloseDialogs = () => {
-    questionData.activeCategoryId = activeCategoryId;
-    postQuestion(questionData)
-      .then(res => {
-        getQuestions(activeCategoryId).then(res => {
-          handleClose();
+    const { question, answers, answerindex } = questionData;
+
+    if (
+      question &&
+      answers[0].option &&
+      answers[1].option &&
+      answers[2].option &&
+      answers[3].option !== "" &&
+      answerindex !== -1
+    ) {
+      questionData.activeCategoryId = activeCategoryId;
+      postQuestion(questionData)
+        .then(res => {
+          getQuestions(activeCategoryId).then(res => {
+            handleClose();
+          });
+        })
+        .catch(err => {
+          alert("cannot add question");
         });
-      })
-      .catch(err => {
-        alert("cannot add question");
-      });
+    } else {
+      alert("Please fill all fields");
+    }
   };
 
   return (
@@ -175,6 +188,7 @@ const AddQuestion = ({
                 }}
                 // fullWidth
                 // value={questionData.answers[0].option}
+
                 onChange={e => setOptionA(e.target.value)}
                 label="Option A"
               />
@@ -209,6 +223,7 @@ const AddQuestion = ({
                 }}
                 // fullWidth
                 // value={question}
+
                 onChange={e => setOptionB(e.target.value)}
                 label="Option B"
               />
@@ -278,6 +293,7 @@ const AddQuestion = ({
                 }}
                 // fullWidth
                 // value={question}
+
                 onChange={e => setOptionD(e.target.value)}
                 label="Option D"
               />

@@ -23,6 +23,7 @@ import * as Colors from "../../styles/colors";
 import EditQuestion from "../EditQuestion";
 
 const QuizHistoryBox = ({ quiz, index, ...props }) => {
+  console.log(quiz, "sssss");
   return (
     <div style={{ transition: "all 0.5s ease" }}>
       <div
@@ -63,6 +64,7 @@ const QuizHistoryBox = ({ quiz, index, ...props }) => {
               <div
                 style={{
                   textAlign: "left",
+                  width: 200,
                   color: Colors.TEXT_SECONDARY
                   // fontWeight: "bold"
                 }}
@@ -77,12 +79,15 @@ const QuizHistoryBox = ({ quiz, index, ...props }) => {
                 >
                   Category:
                 </span>
-                <span style={{ color: Colors.FOCUSED }}>Sports</span>
+                <span style={{ color: Colors.FOCUSED }}>
+                  {quiz && quiz.category.name}
+                </span>
               </div>
               <div
                 style={{
                   textAlign: "left",
-                  color: Colors.TEXT_SECONDARY
+                  color: Colors.TEXT_SECONDARY,
+                  width: 200
                   // fontWeight: "bold"
                 }}
               >
@@ -96,11 +101,14 @@ const QuizHistoryBox = ({ quiz, index, ...props }) => {
                 >
                   Marks:
                 </span>
-                <span style={{ color: Colors.FOCUSED }}>10/40</span>
+                <span style={{ color: Colors.FOCUSED }}>
+                  {quiz && quiz.obtainedMarks}/{quiz && quiz.totalMarks}
+                </span>
               </div>
               <div
                 style={{
                   textAlign: "left",
+                  width: 200,
                   color: Colors.TEXT_SECONDARY
                   // fontWeight: "bold"
                 }}
@@ -114,7 +122,7 @@ const QuizHistoryBox = ({ quiz, index, ...props }) => {
                   Date:
                 </span>
                 <span style={{ color: Colors.FOCUSED }}>
-                  {moment(Date.now()).format("LL")}
+                  {moment(quiz.date).format("LL")}
                 </span>
               </div>
             </div>

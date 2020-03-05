@@ -36,6 +36,7 @@ const History = ({
   category,
   getUserQuizes,
   getQuestions,
+  activeCategoryId,
   userQuizzes,
   ...props
 }) => {
@@ -50,7 +51,7 @@ const History = ({
   }, [userId]);
   console.log(userQuizzes);
   return (
-    <div style={{ border: "1px solid", height: "100vh", paddingTop: 20 }}>
+    <div style={{ paddingTop: 20 }}>
       <div
         style={{
           display: "flex",
@@ -64,9 +65,13 @@ const History = ({
         <UsersDropdown setUserId={setUserId} />
       </div>
 
-      <div style={{ border: "1px solid red" }}>
-        {/* {userQuizzes} */}
-        <QuizHistoryBox quiz={userQuizzes && userQuizzes[0]} index={1} />
+      <div>
+        {userQuizzes &&
+          userQuizzes.map((quiz, index) => {
+            if (quiz.category._id === activeCategoryId) {
+              return <QuizHistoryBox quiz={quiz} index={index + 1} />;
+            }
+          })}
       </div>
     </div>
   );

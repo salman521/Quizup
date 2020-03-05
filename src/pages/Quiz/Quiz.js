@@ -98,7 +98,8 @@ const Quiz = ({
           precision={3}
           onComplete={() => {
             var data = {
-              marks,
+              totalMarks: questionNumber * 10 - 10,
+              obtainedMarks: marks,
               category,
               userId: localStorage.getItem("id")
             };

@@ -9,10 +9,28 @@ import {
   Divider
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    // flexGrow: 1
+    width: 120
+  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2)
+  // },
+
+  text: {
+    fontSize: 13,
+    color: Colors.TEXT_SECONDARY,
+    backgroundColor: Colors.SECONDARY
+  }
+}));
 const AdminLogin = ({ history, login, setUserType, ...props }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const classes = useStyles();
+
+  const [password, setPassword] = useState("");
   return (
     <div
       style={{
@@ -76,18 +94,27 @@ const AdminLogin = ({ history, login, setUserType, ...props }) => {
           {/* <Button>Forgot Password?</Button> */}
           <Grid>
             <Button
+              classes={classes}
               onClick={() => {
-                var data = { email, password };
-                login(data)
-                  .then(res => {
-                    setUserType("admin");
-                    localStorage.setItem("id", res.value.data._id);
-                    localStorage.setItem("userType", "admin");
-                    history.push("/admindashboard");
-                  })
-                  .catch(err => {
-                    alert("Email or Password incorrect");
-                  });
+                if (email && password !== "") {
+                  var data = { email, password };
+                  login(data)
+                    .then(res => {
+                      setUserType("admin");
+                      localStorage.setItem("id", res.value.data._id);
+                      localStorage.setItem("userType", "admin");
+                      history.push("/admindashboard");
+                    })
+                    .catch(err => {
+                      alert("Email or Password incorrect");
+                    });
+                } else {
+                  alert(
+                    email === ""
+                      ? "Please Enter Email"
+                      : "Please Enter Password"
+                  );
+                }
               }}
               className=" button-Login"
             >

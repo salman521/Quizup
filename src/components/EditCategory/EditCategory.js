@@ -67,15 +67,19 @@ const EditCategory = ({
   }, [openEditCategoryDialog]);
 
   const handleCloseDialogs = () => {
-    var data = { name: categoryName, id: activeCategoryId };
-    updateCategory(data)
-      .then(res => {
-        getCategories().then(response => {
-          setCategoryName("");
-          setOpenEditCategoryDialog(false);
-        });
-      })
-      .catch(err => alert("Cannot Update Category Name"));
+    if (categoryName !== "") {
+      var data = { name: categoryName, id: activeCategoryId };
+      updateCategory(data)
+        .then(res => {
+          getCategories().then(response => {
+            setCategoryName("");
+            setOpenEditCategoryDialog(false);
+          });
+        })
+        .catch(err => alert("Cannot Update Category Name"));
+    } else {
+      alert("Please Enter Category Name");
+    }
   };
   return (
     <Dialog
