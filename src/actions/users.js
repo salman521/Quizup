@@ -1,16 +1,16 @@
-import { UserActions } from "../actionTypes";
+import { UserActions, url } from "../actionTypes";
 import axios from "axios";
 
 export const signUp = userData => {
   return {
     type: `${UserActions.USER_SIGNUP}`,
-    payload: axios.post("http://localhost:5000/users/signup", userData)
+    payload: axios.post(`${url}users/signup`, userData)
   };
 };
 export const login = userData => {
   return {
     type: `${UserActions.USER_LOGIN}`,
-    payload: axios.post("http://localhost:5000/users/login", userData)
+    payload: axios.post(`${url}users/login`, userData)
   };
 };
 export const getUser = () => {
@@ -18,12 +18,12 @@ export const getUser = () => {
 
   return {
     type: `${UserActions.GET_USER}`,
-    payload: axios.get(`http://localhost:5000/users/getUser/${id}`)
+    payload: axios.get(`${url}users/getUser/${id}`)
   };
 };
 export const getUsers = () => {
   return {
     type: `${UserActions.GET_USERS}`,
-    payload: axios.get("http://localhost:5000/users")
+    payload: axios.get(`${url}users`)
   };
 };

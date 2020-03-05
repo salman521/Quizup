@@ -9,6 +9,7 @@ import {
   Divider
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: Colors.SECONDARY
   }
 }));
-const AdminLogin = ({ history, login, setUserType, ...props }) => {
+const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
   const [email, setEmail] = useState("");
   const classes = useStyles();
 
@@ -92,7 +93,7 @@ const AdminLogin = ({ history, login, setUserType, ...props }) => {
             />
           </div>
           {/* <Button>Forgot Password?</Button> */}
-          <Grid>
+          <Grid style={{ paddingTop: 13 }}>
             <Button
               classes={classes}
               onClick={() => {
@@ -122,6 +123,9 @@ const AdminLogin = ({ history, login, setUserType, ...props }) => {
             </Button>
           </Grid>
         </form>
+        <div style={{ height: 30, paddingTop: 20 }}>
+          {loading && <CircularProgress />}
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import * as Colors from "../../styles/colors";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import {
   Dialog,
@@ -26,6 +27,7 @@ const QuestionsBox = ({
   activeCategoryId,
   getQuestions,
   quizQuestions,
+  loading,
   ...props
 }) => {
   useEffect(() => {
@@ -36,21 +38,25 @@ const QuestionsBox = ({
 
   return (
     <div className="questionsBox">
-      {/* <h4>{activeCategoryId}</h4> */}
-      {quizQuestions &&
-        quizQuestions.map((question, index) => {
-          return (
-            <div>
-              <Question
-                activeCategoryId={activeCategoryId}
-                question={question}
-                // setBoxOpen={setBoxOpen}
-                // open={open}
-                index={index + 1}
-              />
-            </div>
-          );
-        })}
+      <div>
+        {quizQuestions &&
+          quizQuestions.map((question, index) => {
+            return (
+              <div>
+                <Question
+                  activeCategoryId={activeCategoryId}
+                  question={question}
+                  // setBoxOpen={setBoxOpen}
+                  // open={open}
+                  index={index + 1}
+                />
+              </div>
+            );
+          })}
+      </div>
+      <div style={{ height: 30, paddingTop: 20 }}>
+        {loading && <CircularProgress color="secondary" />}
+      </div>
     </div>
   );
 };

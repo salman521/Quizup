@@ -9,11 +9,30 @@ import {
   Divider
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles } from "@material-ui/core/styles";
 
-const Signup = ({ history, signUp, ...props }) => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    // flexGrow: 1
+
+    width: 120
+  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2)
+  // },
+
+  text: {
+    fontSize: 13,
+    color: Colors.TEXT_SECONDARY,
+    backgroundColor: Colors.SECONDARY
+  }
+}));
+const Signup = ({ history, signUp, loading, ...props }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [name, setName] = useState();
+  const classes = useStyles();
 
   return (
     <div
@@ -97,8 +116,9 @@ const Signup = ({ history, signUp, ...props }) => {
             />
           </div>
           {/* <Button>Forgot Password?</Button> */}
-          <Grid>
+          <Grid style={{ paddingTop: 13 }}>
             <Button
+              classes={classes}
               className="button-Signup"
               onClick={() => {
                 if (email && password && name !== "") {
@@ -120,6 +140,9 @@ const Signup = ({ history, signUp, ...props }) => {
             </Button>
           </Grid>
         </form>
+        <div style={{ height: 30, paddingTop: 20 }}>
+          {loading && <CircularProgress />}
+        </div>
       </div>
     </div>
   );

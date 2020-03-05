@@ -78,7 +78,7 @@ export default (state = initalState, action) => {
     case `${QuestionActions.GET_QUESTIONS}_${Suffixes.REQUEST}`:
       return {
         ...state,
-        quizQuestions: [],
+        // quizQuestions: [],
         loading: true
       };
     case `${QuestionActions.GET_QUESTIONS}_${Suffixes.SUCCESS}`:

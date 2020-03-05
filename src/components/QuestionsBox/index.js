@@ -17,7 +17,8 @@ import {
 
 const mapStateToProps = ({ question }) => ({
   questionData: question.questionData,
-  quizQuestions: question.quizQuestions
+  quizQuestions: question.quizQuestions,
+  loading: question.loading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,6 +7,9 @@ import * as CategoryActions from "./category";
 import * as QuestionActions from "./question";
 import * as QuizActions from "./quiz";
 
+// const url = "http://localhost:5000/";
+const url = "https://wrp-test.herokuapp.com/";
+
 export {
   Suffixes,
   UserActions,
@@ -14,5 +17,6 @@ export {
   CommonActions,
   CategoryActions,
   QuestionActions,
-  QuizActions
+  QuizActions,
+  url
 };

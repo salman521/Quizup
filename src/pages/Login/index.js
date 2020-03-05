@@ -5,7 +5,9 @@ import { setUserType } from "../../actions/common";
 
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';
 
-const mapStateToProps = ({ users }) => ({});
+const mapStateToProps = ({ users }) => ({
+  loading: users.loading
+});
 
 const mapDispatchToProps = dispatch => ({
   login: data => dispatch(login(data)),

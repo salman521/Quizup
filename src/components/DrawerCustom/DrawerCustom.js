@@ -72,8 +72,9 @@ const DrawerCustom = ({
 
   useEffect(() => {
     getCategories().then(res => {
-      console.log(res);
-      setActiveCategoryId(res.value.data[0]._id);
+      if (res.value.data.length > 0) {
+        setActiveCategoryId(res.value.data[0]._id);
+      }
     });
   }, [categories.length < 0]);
 

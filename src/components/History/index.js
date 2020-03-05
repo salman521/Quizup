@@ -5,7 +5,8 @@ import { getUserQuizes } from "../../actions/quiz";
 
 const mapStateToProps = ({ users, quiz }) => ({
   userData: users.userData,
-  userQuizzes: quiz.userQuizzes
+  userQuizzes: quiz.userQuizzes,
+  loading: quiz.loading
 });
 
 const mapDispatchToProps = dispatch => ({

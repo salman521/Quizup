@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 const useStyles = makeStyles(theme => ({
   root: {
     // flexGrow: 1
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: Colors.SECONDARY
   }
 }));
-const Login = ({ history, login, setUserType, ...props }) => {
+const Login = ({ history, login, setUserType, loading, ...props }) => {
   const [email, setEmail] = useState("");
   const classes = useStyles();
   const [password, setPassword] = useState("");
@@ -146,6 +146,9 @@ const Login = ({ history, login, setUserType, ...props }) => {
               Admin Panel
             </Button>
           </Grid>
+          <div style={{ height: 30, paddingTop: 20 }}>
+            {loading && <CircularProgress />}
+          </div>
         </form>
       </div>
     </div>

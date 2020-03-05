@@ -1,4 +1,4 @@
-import { QuestionActions } from "../actionTypes";
+import { QuestionActions, url } from "../actionTypes";
 import axios from "axios";
 
 export const setQuestion = question => ({
@@ -29,20 +29,20 @@ export const setAnswerIndex = value => ({
 export const postQuestion = data => {
   return {
     type: `${QuestionActions.POST_QUESTION}`,
-    payload: axios.post("http://localhost:5000/questions", data)
+    payload: axios.post(`${url}questions`, data)
   };
 };
 
 export const getQuestions = categoryId => {
   return {
     type: `${QuestionActions.GET_QUESTIONS}`,
-    payload: axios.get(`http://localhost:5000/questions/${categoryId}`)
+    payload: axios.get(`${url}questions/${categoryId}`)
   };
 };
 export const deleteQuestion = questionId => {
   return {
     type: `${QuestionActions.DELETE_QUESTION}`,
-    payload: axios.delete("http://localhost:5000/questions", {
+    payload: axios.delete(`${url}questions`, {
       params: {
         id: questionId
       }
@@ -52,6 +52,6 @@ export const deleteQuestion = questionId => {
 export const putQuestion = data => {
   return {
     type: `${QuestionActions.UPDATE_QUESTION}`,
-    payload: axios.put("http://localhost:5000/questions", data)
+    payload: axios.put(`${url}questions`, data)
   };
 };

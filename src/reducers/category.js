@@ -26,8 +26,8 @@ export default (state = initalState, action) => {
     case `${CategoryActions.GET_CATEGORIES}_${Suffixes.REQUEST}`:
       return {
         ...state,
-        loading: true,
-        categories: []
+        loading: true
+        // categories: []
       };
     case `${CategoryActions.GET_CATEGORIES}_${Suffixes.SUCCESS}`:
       return {

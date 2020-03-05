@@ -1,10 +1,10 @@
-import { AdminActions } from "../actionTypes";
+import { AdminActions, url } from "../actionTypes";
 import axios from "axios";
 
 export const login = data => {
   return {
     type: `${AdminActions.ADMIN_LOGIN}`,
-    payload: axios.post("http://localhost:5000/admins/login", data)
+    payload: axios.post(`${url}admins/login`, data)
   };
 };
 export const getAdmin = () => {
@@ -12,6 +12,6 @@ export const getAdmin = () => {
 
   return {
     type: `${AdminActions.GET_ADMIN}`,
-    payload: axios.get(`http://localhost:5000/admins/getAdmin/${id}`)
+    payload: axios.get(`${url}admins/getAdmin/${id}`)
   };
 };

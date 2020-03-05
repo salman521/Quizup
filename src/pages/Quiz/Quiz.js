@@ -48,7 +48,7 @@ const Quiz = ({
   const [questionNumber, setQuestionNumber] = useState(1);
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [time, setTime] = useState(Date.now() + 10000);
+  const [time, setTime] = useState(Date.now() + 60000);
   const classes = useStyles();
 
   useEffect(() => {
@@ -103,13 +103,12 @@ const Quiz = ({
               category,
               userId: localStorage.getItem("id")
             };
+            history.push("/quizresult", {
+              marks: marks,
+              totalMarks: questionNumber * 10 - 10
+            });
             postQuiz(data)
-              .then(result => {
-                history.push("/quizresult", {
-                  marks: marks,
-                  totalMarks: questionNumber * 10 - 10
-                });
-              })
+              .then(result => {})
               .catch(err => {
                 alert("Could not post quiz result");
               });
@@ -153,9 +152,10 @@ const Quiz = ({
                   style={{
                     // border: "1px solid green",
                     display: "flex",
+                    textAlign: "left",
                     flexDirection: "column",
                     marginLeft: 15,
-                    width: 400
+                    width: 500
                   }}
                   color="primary"
                   value={indexValue}
