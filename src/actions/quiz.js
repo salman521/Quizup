@@ -5,6 +5,10 @@ export const setQuizCategory = id => ({
   type: `${QuizActions.SET_CATEGORY}`,
   id
 });
+export const setMarks = value => ({
+  type: `${QuizActions.SET_MARKS}`,
+  value
+});
 
 // export const login = data => {
 //   return {

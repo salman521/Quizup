@@ -1,7 +1,8 @@
 import { QuizActions, Suffixes } from "../actionTypes";
 
 const initalState = {
-  category: ""
+  category: "",
+  marks: 0
 };
 
 export default (state = initalState, action) => {
@@ -10,6 +11,12 @@ export default (state = initalState, action) => {
       return {
         ...state,
         category: action.id
+      };
+    case `${QuizActions.SET_MARKS}`:
+      state.marks = state.marks + action.value;
+      return {
+        ...state
+        // marks:
       };
     // case `${UserActions.USER_SIGNUP}_${Suffixes.REQUEST}`:
     //   return {
