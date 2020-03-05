@@ -38,8 +38,8 @@ const QuestionsBox = ({
 
   return (
     <div className="questionsBox">
-      <div>
-        {quizQuestions &&
+      <div style={{ paddingTop: 20 }}>
+        {quizQuestions && quizQuestions.length > 0 ? (
           quizQuestions.map((question, index) => {
             return (
               <div>
@@ -52,7 +52,10 @@ const QuestionsBox = ({
                 />
               </div>
             );
-          })}
+          })
+        ) : (
+          <div>{!loading && "No Question in this category"}</div>
+        )}
       </div>
       <div style={{ height: 30, paddingTop: 20 }}>
         {loading && <CircularProgress color="secondary" />}

@@ -28,6 +28,7 @@ import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 import Button from "../Button";
 import { Tabs, Tab } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
   root: {
@@ -55,6 +56,7 @@ const EditQuestion = ({
   putQuestion,
   getQuestions,
   questionForEdit,
+  loading,
   ...props
 }) => {
   // const { question: questionData } = props;
@@ -68,6 +70,14 @@ const EditQuestion = ({
   const [optionC, setOptionC] = useState(questionData.answers[2].option);
   const [optionD, setOptionD] = useState(questionData.answers[3].option);
 
+  useEffect(() => {
+    setQuestion(questionData.question);
+    setAnswerIndex(questionData.answerindex);
+    setOptionA(questionData.answers[0].option);
+    setOptionB(questionData.answers[1].option);
+    setOptionC(questionData.answers[2].option);
+    setOptionD(questionData.answers[3].option);
+  }, [questionForEdit]);
   const handleCloseDialogs = () => {
     if (
       question &&
@@ -393,6 +403,16 @@ const EditQuestion = ({
               }}
               text="Update"
             />
+          </div>
+          <div
+            style={{
+              height: 30,
+              paddingTop: 20,
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
+            {loading && <CircularProgress color="secondary" />}
           </div>
         </div>
       </DialogContent>
