@@ -10,12 +10,12 @@ export const setMarks = value => ({
   value
 });
 
-// export const login = data => {
-//   return {
-//     type: `${AdminActions.ADMIN_LOGIN}`,
-//     payload: axios.post("http://localhost:5000/admins/login", data)
-//   };
-// };
+export const postQuiz = data => {
+  return {
+    type: `${QuizActions.POST_QUIZ}`,
+    payload: axios.post("http://localhost:5000/quiz", data)
+  };
+};
 // export const getAdmin = () => {
 //   const id = localStorage.getItem("id");
 

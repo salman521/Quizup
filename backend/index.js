@@ -5,6 +5,7 @@ const express = require("express"),
   userRoutes = require("./routes/users"),
   categoryRoutes = require("./routes/category"),
   questionRoutes = require("./routes/questions"),
+  quizRoutes = require("./routes/quiz"),
   adminRoutes = require("./routes/admins");
 
 var cors = require("cors");
@@ -26,6 +27,7 @@ app.use("/users", userRoutes);
 app.use("/admins", adminRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/questions", questionRoutes);
+app.use("/quiz", quizRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Quiz Up Api!!");

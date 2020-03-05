@@ -39,6 +39,7 @@ const Quiz = ({
   setMarks,
   marks,
   category,
+  postQuiz,
   ...props
 }) => {
   // const [marks, setMarks] = useState(0);
@@ -101,8 +102,13 @@ const Quiz = ({
               category,
               userId: localStorage.getItem("id")
             };
-            console.log(data, "sss");
-            history.push("/quizresult");
+            postQuiz(data)
+              .then(result => {
+                history.push("/quizresult");
+              })
+              .catch(err => {
+                alert("Could not post quiz result");
+              });
           }}
           renderer={props => (
             <div style={{ padding: 40 }}>

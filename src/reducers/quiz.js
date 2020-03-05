@@ -18,23 +18,24 @@ export default (state = initalState, action) => {
         ...state
         // marks:
       };
-    // case `${UserActions.USER_SIGNUP}_${Suffixes.REQUEST}`:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   };
-    // case `${UserActions.USER_SIGNUP}_${Suffixes.SUCCESS}`:
-    //   return {
-    //     ...state,
-
-    //     loading: false
-    //   };
-    // case `${UserActions.USER_SIGNUP}_${Suffixes.FAILURE}`:
-    //   return {
-    //     ...state,
-    //     loading: false
-    //     // data: {}
-    //   };
+    case `${QuizActions.POST_QUIZ}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        loading: true
+      };
+    case `${QuizActions.POST_QUIZ}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        category: "",
+        marks: 0,
+        loading: false
+      };
+    case `${QuizActions.POST_QUIZ}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false
+        // data: {}
+      };
     // case `${UserActions.USER_LOGIN}_${Suffixes.REQUEST}`:
     //   return {
     //     ...state,
