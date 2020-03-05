@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Button,
   Grid,
   TextField,
   Typography,
@@ -15,6 +14,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import CategoriesDropdown from "../../components/CategoriesDropdown";
+import Button from "../../components/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +28,14 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   }
 }));
-const Home = ({ history, getUser, userData, ...props }) => {
+const Home = ({
+  history,
+  getUser,
+  userData,
+  category,
+  getQuestions,
+  ...props
+}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const classes = useStyles();
@@ -36,16 +44,9 @@ const Home = ({ history, getUser, userData, ...props }) => {
   }, [userData === null]);
   return (
     <div>
-      <AppBar position="static">
+      {/* <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
+          <Typography variant="h6">Quiz Up</Typography>
           <Typography variant="h6" className={classes.title}>
             Quiz App
           </Typography>
@@ -58,8 +59,23 @@ const Home = ({ history, getUser, userData, ...props }) => {
           >
             Logout
           </Button>
+          <Button
+            onClick={() => {
+              localStorage.clear();
+              history.push("/login");
+            }}
+            customStyle={{
+              backgroundColor: Colors.TERTIARY,
+              minWidth: 140,
+              borderRadius: 12,
+              color: Colors.TEXT_SECONDARY,
+              textAlign: "center"
+            }}
+            text="Logout"
+          />
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
+
       <div
         style={{
           display: "flex",
@@ -69,12 +85,42 @@ const Home = ({ history, getUser, userData, ...props }) => {
           justifyContent: "space-around"
         }}
       >
-        <Typography className="heading" variant="h2">
-          Welcome To Quiz App Dashboard
+        <Typography className="heading" variant="h4">
+          {userData && userData.name}
         </Typography>
-        <Typography className="heading" variant="h5">
-          {userData.name}
+        <Typography style={{ color: Colors.TEXT_TERTIARY }} variant="h5">
+          Please choose your desired quiz category
         </Typography>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: 150
+        }}
+      >
+        <CategoriesDropdown />
+        {category && (
+          <Button
+            onClick={() => {
+              getQuestions(category).then(res => {
+                history.push("/quiz");
+              });
+            }}
+            disabled={true}
+            customStyle={{
+              backgroundColor: Colors.FOCUSED,
+              minWidth: 140,
+              borderRadius: 12,
+              color: Colors.TEXT_PRIMARY,
+
+              textAlign: "center"
+            }}
+            text="Start Quiz"
+          />
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,14 @@ const OpenRoute = ({ component: Component, isAuthenticated, ...rest }) => {
         !localStorage.getItem("id") ? (
           <Component {...props} />
         ) : (
-          <Redirect from="/:anything" to="/home" />
+          <Redirect
+            from="/:anything"
+            to={
+              localStorage.getItem("userType") === "admin"
+                ? "/admindashboard"
+                : "/home"
+            }
+          />
         )
       }
     />

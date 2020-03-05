@@ -12,7 +12,7 @@ import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
+import SideBar from "../../components/SideBar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -36,21 +36,16 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
   }, [adminData === null]);
   return (
     <div>
-      <AppBar position="static">
+      {/* <AppBar>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
+          <Typography variant="h6">Quiz Up</Typography>
           <Typography variant="h6" className={classes.title}>
-            Quiz App
+            Admin Dashboard
           </Typography>
+
           <Button
             onClick={() => {
+              console.log(history, "sssss");
               localStorage.clear();
               history.push("/login");
             }}
@@ -59,23 +54,9 @@ const AdminDashboard = ({ history, getAdmin, adminData, ...props }) => {
             Logout
           </Button>
         </Toolbar>
-      </AppBar>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignSelf: "center",
-          height: "30vh",
-          justifyContent: "space-around"
-        }}
-      >
-        <Typography className="heading" variant="h2">
-          Welcome To Quiz App Admin Dashboard
-        </Typography>
-        <Typography className="heading" variant="h5">
-          {adminData.name}
-        </Typography>
-      </div>
+      </AppBar> */}
+
+      <SideBar history={history} />
     </div>
   );
 };

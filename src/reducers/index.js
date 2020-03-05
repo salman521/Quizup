@@ -2,14 +2,18 @@ import { combineReducers } from "redux";
 
 import users from "./users";
 import admins from "./admins";
-
-// import business from './business';
+import common from "./common";
+import category from "./category";
+import question from "./question";
+import quiz from "./quiz";
 
 const reducers = {
-  // routing: routerReducer,
   users,
-  admins
-  // business
+  admins,
+  common,
+  category,
+  question,
+  quiz
 };
 
 export default combineReducers(reducers);

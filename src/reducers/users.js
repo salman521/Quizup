@@ -2,7 +2,8 @@ import { UserActions, Suffixes } from "../actionTypes";
 
 const initalState = {
   loading: false,
-  userData: {}
+  userData: null,
+  usersArray: null
 };
 
 export default (state = initalState, action) => {
@@ -59,6 +60,24 @@ export default (state = initalState, action) => {
         ...state,
         loading: false,
         userData: {}
+      };
+    case `${UserActions.GET_USERS}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        usersArray: [],
+        loading: true
+      };
+    case `${UserActions.GET_USERS}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        usersArray: action.payload.data,
+        loading: false
+      };
+    case `${UserActions.GET_USERS}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false,
+        usersArray: []
       };
     default:
       return state;

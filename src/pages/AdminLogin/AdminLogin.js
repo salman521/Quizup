@@ -9,10 +9,29 @@ import {
   Divider
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles } from "@material-ui/core/styles";
 
-const AdminLogin = ({ history, login, ...props }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+const useStyles = makeStyles(theme => ({
+  root: {
+    // flexGrow: 1
+    width: 120
+  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2)
+  // },
+
+  text: {
+    fontSize: 13,
+    color: Colors.TEXT_SECONDARY,
+    backgroundColor: Colors.SECONDARY
+  }
+}));
+const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
+  const [email, setEmail] = useState("");
+  const classes = useStyles();
+
+  const [password, setPassword] = useState("");
   return (
     <div
       style={{
@@ -74,18 +93,29 @@ const AdminLogin = ({ history, login, ...props }) => {
             />
           </div>
           {/* <Button>Forgot Password?</Button> */}
-          <Grid>
+          <Grid style={{ paddingTop: 13 }}>
             <Button
+              classes={classes}
               onClick={() => {
-                var data = { email, password };
-                login(data)
-                  .then(res => {
-                    localStorage.setItem("id", res.value.data._id);
-                    history.push("/admindashboard");
-                  })
-                  .catch(err => {
-                    alert("Email or Password incorrect");
-                  });
+                if (email && password !== "") {
+                  var data = { email, password };
+                  login(data)
+                    .then(res => {
+                      setUserType("admin");
+                      localStorage.setItem("id", res.value.data._id);
+                      localStorage.setItem("userType", "admin");
+                      history.push("/admindashboard");
+                    })
+                    .catch(err => {
+                      alert("Email or Password incorrect");
+                    });
+                } else {
+                  alert(
+                    email === ""
+                      ? "Please Enter Email"
+                      : "Please Enter Password"
+                  );
+                }
               }}
               className=" button-Login"
             >
@@ -93,6 +123,9 @@ const AdminLogin = ({ history, login, ...props }) => {
             </Button>
           </Grid>
         </form>
+        <div style={{ height: 30, paddingTop: 20 }}>
+          {loading && <CircularProgress />}
+        </div>
       </div>
     </div>
   );
