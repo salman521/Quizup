@@ -29,59 +29,24 @@ const useStyles = makeStyles(theme => ({
   // },
 
   text: {
-    color: Colors.TEXT_TERTIARY,
+    color: Colors.FOCUSED_NEGATIVE,
     backgroundColor: Colors.SECONDARY
   }
 }));
-const Quiz = ({
-  history,
-  quizQuestions,
-  setMarks,
-  marks,
-  category,
-  ...props
-}) => {
+const QuizResult = ({ history, marks, category, quizQuestions, ...props }) => {
   // const [marks, setMarks] = useState(0);
 
-  const [indexValue, setIndexValue] = useState("-1");
-  const [questionNumber, setQuestionNumber] = useState(1);
-
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [time, setTime] = useState(Date.now() + 10000);
   const classes = useStyles();
 
   useEffect(() => {
     if (quizQuestions.length > 0) {
-      setQuestionIndex(0);
+      // setQuestionIndex(0);
     } else {
       history.push("/home");
     }
   }, [quizQuestions]);
   return (
     <div>
-      {/* <AppBar>
-        <Toolbar>
-          <Typography variant="h6">Quiz Up</Typography>
-          <Typography variant="h6" className={classes.title}>
-            Quiz
-          </Typography>
-
-          <Button
-            onClick={() => {
-              localStorage.clear();
-              history.push("/login");
-            }}
-            customStyle={{
-              backgroundColor: Colors.TERTIARY,
-              minWidth: 140,
-              borderRadius: 12,
-              color: Colors.TEXT_SECONDARY,
-              textAlign: "center"
-            }}
-            text="Logout"
-          />
-        </Toolbar>
-      </AppBar> */}
       <div
         style={{
           display: "flex",
@@ -91,52 +56,27 @@ const Quiz = ({
           justifyContent: "space-around"
         }}
       >
-        <Countdown
-          date={time}
-          intervalDelay={0}
-          precision={3}
-          onComplete={() => {
-            var data = {
-              marks,
-              category,
-              userId: localStorage.getItem("id")
-            };
-            console.log(data, "sss");
-            history.push("/quizresult");
-          }}
-          renderer={props => (
-            <div style={{ padding: 40 }}>
-              <span>Time Remaining</span>
-              <Typography className="heading" variant="h5">
-                {" " + props.minutes}:{"" + props.seconds}
-              </Typography>
-            </div>
-          )}
-        />
-
-        <div className="loginPage">
-          <form style={{ height: 300 }}>
-            <Typography className="heading" variant="h5">
-              Question
+        <div className="resultBox">
+          <form style={{ height: 150 }}>
+            <Typography
+              style={{ color: Colors.FOCUSED }}
+              className="heading"
+              variant="h5"
+            >
+              Result
             </Typography>
             <div
               style={{
-                marginTop: 15,
-                width: 500,
-                textAlign: "left",
                 height: 60,
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center"
               }}
             >
-              <span style={{ marginRight: 5 }}>{questionNumber + ") "}</span>
-              <span>
-                {quizQuestions.length > 0 &&
-                  quizQuestions[questionIndex].question}
-              </span>
+              <span>You got {marks + " "} marks</span>
             </div>
             <div className="data-Input">
-              <div>
+              {/* <div>
                 <RadioGroup
                   aria-label="gender"
                   name="gender1"
@@ -191,51 +131,19 @@ const Quiz = ({
                     }
                   />
                 </RadioGroup>
-              </div>
+              </div> */}
             </div>
             {/* <Button>Forgot Password?</Button> */}
             <Grid>
               <Button
                 onClick={() => {
-                  if (indexValue < 0) {
-                    alert("Please Select an option");
-                    return;
-                  } else {
-                    if (
-                      quizQuestions[questionIndex].answerindex.toString() ===
-                      indexValue
-                    ) {
-                      setMarks(10);
-                      if (questionIndex === quizQuestions.length - 1) {
-                        setIndexValue("-1");
-                        setQuestionNumber(questionNumber + 1);
-                        setQuestionIndex(0);
-                      } else {
-                        // console.log(marks, "sss");
-                        setIndexValue("-1");
-                        setQuestionNumber(questionNumber + 1);
-                        setQuestionIndex(questionIndex + 1);
-                      }
-                    } else {
-                      if (questionIndex === quizQuestions.length - 1) {
-                        setIndexValue("-1");
-                        setQuestionNumber(questionNumber + 1);
-                        setQuestionIndex(0);
-                      } else {
-                        setIndexValue("-1");
-                        setQuestionNumber(questionNumber + 1);
-                        setQuestionIndex(questionIndex + 1);
-                      }
-                    }
-                  }
-
-                  // history.push("/adminlogin");
+                  history.push("/home");
                 }}
                 // disabled
                 classes={classes}
                 className=" button-Login"
               >
-                Next
+                Want to give another Quiz?
               </Button>
             </Grid>
           </form>
@@ -246,4 +154,4 @@ const Quiz = ({
   );
 };
 
-export default Quiz;
+export default QuizResult;

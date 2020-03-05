@@ -44,13 +44,13 @@ const Home = ({
   }, [userData === null]);
   return (
     <div>
-      <AppBar position="static">
+      {/* <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">Quiz Up</Typography>
           <Typography variant="h6" className={classes.title}>
             Quiz App
           </Typography>
-          {/* <Button
+          <Button
             onClick={() => {
               localStorage.clear();
               history.push("/login");
@@ -58,7 +58,7 @@ const Home = ({
             color="inherit"
           >
             Logout
-          </Button> */}
+          </Button>
           <Button
             onClick={() => {
               localStorage.clear();
@@ -74,7 +74,7 @@ const Home = ({
             text="Logout"
           />
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
       <div
         style={{
@@ -85,11 +85,11 @@ const Home = ({
           justifyContent: "space-around"
         }}
       >
-        <Typography className="heading" variant="h2">
-          Welcome To Quiz App Dashboard
-        </Typography>
-        <Typography className="heading" variant="h5">
+        <Typography className="heading" variant="h4">
           {userData && userData.name}
+        </Typography>
+        <Typography style={{ color: Colors.TEXT_TERTIARY }} variant="h5">
+          Please choose your desired quiz category
         </Typography>
       </div>
       <div

@@ -12,6 +12,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
+import QuizResult from "./pages/QuizResult";
 
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -42,8 +43,14 @@ const AppRouter = ({ userType, ...props }) => {
   return (
     <BrowserRouter history={history}>
       <Switch>
-        <AuthRoute path="/home" component={Home} exact />
-        <AuthRoute path="/quiz" component={Quiz} exact />
+        <AuthRoute path="/home" component={Home} history={history} exact />
+        <AuthRoute path="/quiz" component={Quiz} history={history} exact />
+        <AuthRoute
+          path="/quizresult"
+          component={QuizResult}
+          history={history}
+          exact
+        />
 
         <OpenRoute path="/signup" component={Signup} exact />
         <OpenRoute path="/adminlogin" component={AdminLogin} exact />
