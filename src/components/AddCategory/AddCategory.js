@@ -19,40 +19,15 @@ import {
 } from "@material-ui/core";
 import Button from "../Button";
 import AddIcon from "@material-ui/icons/Add";
-import { makeStyles } from "@material-ui/core/styles";
-import { getCategories } from "../../actions/category";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles({
-  root: {
-    // backgroundColor: 'red'
-  },
-  label: {
-    color: Colors.TEXT_TERTIARY,
-    fontSize: 10
-  },
-
-  // root: {
-  //   '&$checked': {
-  //     color: 'green',
-  //     '&:hover': {
-  //       backgroundColor: 'blue',
-  //       // Reset on touch devices, it doesn't add specificity
-  //       '@media (hover: none)': {
-  //         backgroundColor: 'yellow'
-  //       }
-  //     }
-  //   },
-  checked: {
-    backgroundColor: Colors.RED_ACCENT
-    // color: Colors.RED_ACCENT
-  }
-});
 const AddCategory = ({
   openDialog,
   organizationName,
   setOpen,
   getCategories,
   addCategory,
+  loading,
   ...props
 }) => {
   const handleClickOpenDialogs = () => {
@@ -162,6 +137,16 @@ const AddCategory = ({
             }}
             text="Add"
           />
+        </div>
+        <div
+          style={{
+            height: 10,
+            paddingTop: 20,
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          {loading && <CircularProgress size={20} color="secondary" />}
         </div>
       </DialogContent>
     </Dialog>

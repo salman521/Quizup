@@ -6,7 +6,9 @@ import { addCategory, getCategories } from "../../actions/category";
 
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';
 
-const mapStateToProps = ({ users }) => ({});
+const mapStateToProps = ({ category }) => ({
+  loading: category.loading
+});
 
 const mapDispatchToProps = dispatch => ({
   addCategory: data => dispatch(addCategory(data)),
