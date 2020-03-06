@@ -19,9 +19,6 @@ const useStyles = makeStyles(theme => ({
 }));
 const QuizResult = ({ history, quizQuestions, ...props }) => {
   // const [marks, setMarks] = useState(0);
-  const { marks, totalMarks } = history.location.state;
-  const classes = useStyles();
-  console.log(history, "ssss");
   useEffect(() => {
     if (quizQuestions.length > 0) {
       // setQuestionIndex(0);
@@ -29,6 +26,10 @@ const QuizResult = ({ history, quizQuestions, ...props }) => {
       history.push("/home");
     }
   }, [quizQuestions]);
+
+  const classes = useStyles();
+  console.log(history, "ssss");
+
   return (
     <div>
       <div
@@ -41,7 +42,14 @@ const QuizResult = ({ history, quizQuestions, ...props }) => {
         }}
       >
         <div className="resultBox">
-          <form style={{ height: 150 }}>
+          <form
+            style={{
+              height: 250,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            }}
+          >
             <Typography
               style={{ color: Colors.FOCUSED }}
               className="heading"
@@ -53,13 +61,33 @@ const QuizResult = ({ history, quizQuestions, ...props }) => {
               style={{
                 height: 60,
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "space-evenly"
               }}
             >
-              <span>
-                You got {marks + " "} marks out of {" " + totalMarks}
-              </span>
+              <div style={{ width: 250, minHeight: 30, textAlign: "left" }}>
+                Total Questions Attempted:
+                <span style={{ color: Colors.TEXT_PRIMARY, marginLeft: 5 }}>
+                  {history.location.state.totalMarks / 10}
+                </span>
+              </div>
+              <div style={{ width: 250, minHeight: 30, textAlign: "left" }}>
+                Total Marks:
+                <span style={{ color: Colors.TEXT_PRIMARY, marginLeft: 5 }}>
+                  {history.location.state.totalMarks}
+                </span>
+              </div>
+              <div style={{ width: 250, minHeight: 30, textAlign: "left" }}>
+                Obtained Marks:
+                <span style={{ color: Colors.TEXT_PRIMARY, marginLeft: 5 }}>
+                  {history.location.state.marks}
+                </span>
+              </div>
+              {/* <span>
+                {history.location.state.marks + " "} marks out of{" "}
+                {" " + history.location.state.totalMarks}
+              </span> */}
             </div>
 
             <Grid>

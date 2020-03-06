@@ -42,7 +42,7 @@ const Quiz = ({
   const [questionNumber, setQuestionNumber] = useState(1);
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [time, setTime] = useState(Date.now() + 10000);
+  const [time, setTime] = useState(Date.now() + 5000);
   const classes = useStyles();
 
   useEffect(() => {
