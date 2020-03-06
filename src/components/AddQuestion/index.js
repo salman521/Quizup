@@ -1,6 +1,5 @@
 import AddQuestion from "./AddQuestion";
 import { connect } from "react-redux";
-import { login } from "../../actions/admin";
 import {
   setQuestion,
   setOptionA,

@@ -1,52 +1,16 @@
 import React, { Component, useState, useEffect } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import * as Colors from "../../styles/colors";
-// import Checkbox from 'react-toolbox/lib/checkbox';
+
 import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
-  TextField,
-  DialogTitle,
-  FormControlLabel,
-  Checkbox
+  TextField
 } from "@material-ui/core";
 import Button from "../Button";
-import AddIcon from "@material-ui/icons/Add";
-import { makeStyles } from "@material-ui/core/styles";
-import { getCategories } from "../../actions/category";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles({
-  root: {
-    // backgroundColor: 'red'
-  },
-  label: {
-    color: Colors.TEXT_TERTIARY,
-    fontSize: 10
-  },
-
-  // root: {
-  //   '&$checked': {
-  //     color: 'green',
-  //     '&:hover': {
-  //       backgroundColor: 'blue',
-  //       // Reset on touch devices, it doesn't add specificity
-  //       '@media (hover: none)': {
-  //         backgroundColor: 'yellow'
-  //       }
-  //     }
-  //   },
-  checked: {
-    backgroundColor: Colors.RED_ACCENT
-    // color: Colors.RED_ACCENT
-  }
-});
 const EditCategory = ({
   openEditCategoryDialog,
   setOpenEditCategoryDialog,
@@ -54,6 +18,7 @@ const EditCategory = ({
   categories,
   activeCategoryId,
   updateCategory,
+  loading,
   ...props
 }) => {
   const [categoryName, setCategoryName] = useState("");
@@ -169,6 +134,16 @@ const EditCategory = ({
             }}
             text="Update"
           />
+        </div>
+        <div
+          style={{
+            height: 10,
+            paddingTop: 20,
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          {loading && <CircularProgress size={20} color="secondary" />}
         </div>
       </DialogContent>
     </Dialog>

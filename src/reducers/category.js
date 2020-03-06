@@ -56,6 +56,21 @@ export default (state = initalState, action) => {
         ...state,
         loading: false
       };
+    case `${CategoryActions.UPDATE_CATEGORY}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        loading: true
+      };
+    case `${CategoryActions.UPDATE_CATEGORY}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        loading: false
+      };
+    case `${CategoryActions.UPDATE_CATEGORY}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false
+      };
 
     default:
       return state;

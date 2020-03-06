@@ -6,21 +6,11 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import {
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   TextField,
-  DialogTitle,
-  FormControlLabel,
-  Checkbox
+  FormControlLabel
 } from "@material-ui/core";
-// import Button from '@material-ui/core/Button';
-import AddIcon from "@material-ui/icons/Add";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import moment from "moment";
+
 import Button from "../Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -33,15 +23,6 @@ const useStyles = makeStyles({
       color: "#4B8DF8"
     }
   }
-
-  // underline: {
-  //   '&&&:before': {
-  //     borderBottom: 'none'
-  //   },
-  //   '&&:after': {
-  //     borderBottom: 'none'
-  //   }
-  // }
 });
 const AddQuestion = ({
   open,
@@ -384,13 +365,13 @@ const AddQuestion = ({
           </div>
           <div
             style={{
-              height: 30,
+              height: 10,
               paddingTop: 20,
               display: "flex",
               justifyContent: "center"
             }}
           >
-            {loading && <CircularProgress color="secondary" />}
+            {loading && <CircularProgress size={20} color="secondary" />}
           </div>
         </div>
       </DialogContent>

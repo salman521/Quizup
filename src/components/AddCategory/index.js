@@ -1,7 +1,5 @@
 import AddCategory from "./AddCategory";
-
 import { connect } from "react-redux";
-import { login } from "../../actions/admin";
 import { addCategory, getCategories } from "../../actions/category";
 
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';

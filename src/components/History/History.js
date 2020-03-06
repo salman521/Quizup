@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  TextField,
-  Typography,
-  Checkbox,
-  FormControlLabel,
-  Divider
-} from "@material-ui/core";
+import { Grid, TextField, Typography } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import UsersDropdown from "../../components/UsersDropdown";
-import Button from "../../components/Button";
+
 import QuizHistoryBox from "../QuizHistoryBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -43,8 +32,7 @@ const History = ({
   ...props
 }) => {
   const [userId, setUserId] = useState(null);
-  const [password, setPassword] = useState();
-  const classes = useStyles();
+
   useEffect(() => {
     // getUser()
     if (userId) {

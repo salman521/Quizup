@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Grid,
-  TextField,
-  Typography,
-  Checkbox,
-  FormControlLabel,
-  Divider
-} from "@material-ui/core";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -41,7 +33,7 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
       }}
     >
       <Typography className="heading" variant="h2">
-        Quiz Up
+        Quiz App
       </Typography>
 
       <div className="loginPage">
@@ -146,8 +138,8 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
               Admin Panel
             </Button>
           </Grid>
-          <div style={{ height: 30, paddingTop: 20 }}>
-            {loading && <CircularProgress />}
+          <div style={{ height: 10, paddingTop: 20 }}>
+            {loading && <CircularProgress size={20} />}
           </div>
         </form>
       </div>

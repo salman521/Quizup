@@ -1,29 +1,15 @@
 import React, { Component, useState, useEffect } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import { Select } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import Button from "../Button";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import Popover from "@material-ui/core/Popover";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
 import AddCategory from "../AddCategory";
 import EditCategory from "../EditCategory";
 
 import { makeStyles } from "@material-ui/core/styles";
 import * as Colors from "../../styles/colors";
-// import AddBook from "../AddBook";
 
 const useStyles = makeStyles({
   select: {
@@ -66,8 +52,6 @@ const DrawerCustom = ({
   deleteCategory,
   ...props
 }) => {
-  const [addMemberBoxOpen, setAddMemberBoxOpen] = useState(false);
-  const [workplaceExpand, setWorkplaceExpand] = useState(false);
   const [organization, setOrganization] = useState();
 
   useEffect(() => {
@@ -91,19 +75,12 @@ const DrawerCustom = ({
     false
   );
 
-  const classes = useStyles();
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-  // const [mobileOpen, setMobileOpen] = useState(false);
   const popoverOpen = Boolean(anchorEl);
   const id = popoverOpen ? "simple-popover" : undefined;
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+
   return (
     <div>
       <EditCategory
