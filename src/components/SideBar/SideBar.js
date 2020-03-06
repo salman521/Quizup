@@ -252,19 +252,24 @@ const SideBar = ({
                   }}
                   // button
                   onClick={event => {
-                    setAnchorEl(event.currentTarget);
+                    localStorage.clear();
+                    setUserType("");
+                    history.push("/login");
                   }}
                 >
                   <ListItemIcon>
                     <img
-                      src={require("../../Image/settings.png")}
+                      src={require("../../Image/logout.png")}
                       width="auto"
-                      style={{ marginLeft: "12px" }}
+                      style={{ marginLeft: "5px" }}
                       height="18"
                       alt="Logo"
                     />
                   </ListItemIcon>
-                  <ListItemText primary="Settings" />
+                  <ListItemText
+                    style={{ color: Colors.TEXT_PRIMARY }}
+                    primary="Logout"
+                  />
                 </div>
               </div>
             </Drawer>

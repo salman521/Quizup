@@ -6,14 +6,14 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const useStyles = makeStyles(theme => ({
   root: {
     // flexGrow: 1
-    width: 120
+    width: 100
   },
   // menuButton: {
   //   marginRight: theme.spacing(2)
   // },
 
   text: {
-    fontSize: 13,
+    fontSize: 11,
     color: Colors.TEXT_SECONDARY,
     backgroundColor: Colors.SECONDARY
   }
@@ -28,11 +28,11 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
         display: "flex",
         flexDirection: "column",
         alignSelf: "center",
-        height: "80vh",
-        justifyContent: "space-around"
+        height: "70vh",
+        padding: 90
       }}
     >
-      <Typography className="heading" variant="h2">
+      <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
         Quiz App
       </Typography>
 
@@ -55,6 +55,12 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
                   fontSize: 14
                 }
               }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
+                }
+              }}
               style={{ width: 320 }}
               name="email"
               id="standard-required"
@@ -73,6 +79,12 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
                   fontSize: 14
                 }
               }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
+                }
+              }}
               onChange={e => setPassword(e.target.value)}
               required
               fullWidth
@@ -83,7 +95,7 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
             />
           </div>
           {/* <Button>Forgot Password?</Button> */}
-          <Grid
+          <div
             style={{
               // border: "2px solid red",
               display: "flex",
@@ -137,7 +149,7 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
             >
               Admin Panel
             </Button>
-          </Grid>
+          </div>
           <div style={{ height: 10, paddingTop: 20 }}>
             {loading && <CircularProgress size={20} />}
           </div>

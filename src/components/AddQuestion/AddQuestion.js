@@ -127,7 +127,10 @@ const AddQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 fullWidth
                 value={questionData.question}
@@ -161,7 +164,10 @@ const AddQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 // value={questionData.answers[0].option}
@@ -196,7 +202,10 @@ const AddQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 // value={question}
@@ -231,7 +240,10 @@ const AddQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 // value={question}
@@ -266,7 +278,10 @@ const AddQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 // value={question}

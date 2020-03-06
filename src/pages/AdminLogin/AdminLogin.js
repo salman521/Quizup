@@ -38,12 +38,13 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
         display: "flex",
         flexDirection: "column",
         alignSelf: "center",
-        height: "80vh",
-        justifyContent: "space-around"
+        height: "70vh",
+        padding: 90
+        // justifyContent: "space-evenly"
       }}
     >
-      <Typography className="heading" variant="h2">
-        Quiz Up
+      <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
+        Quiz App
       </Typography>
 
       <div className="loginPage">
@@ -65,6 +66,12 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
                   fontSize: 14
                 }
               }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
+                }
+              }}
               style={{ width: 320 }}
               name="email"
               id="standard-required"
@@ -81,6 +88,12 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
                 style: {
                   color: Colors.TEXT_SECONDARY,
                   fontSize: 14
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
                 }
               }}
               onChange={e => setPassword(e.target.value)}

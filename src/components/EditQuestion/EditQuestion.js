@@ -158,7 +158,10 @@ const EditQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 fullWidth
                 value={question}
@@ -192,7 +195,10 @@ const EditQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 value={optionA}
@@ -226,7 +232,10 @@ const EditQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 value={optionB}
@@ -260,7 +269,10 @@ const EditQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 value={optionC}
@@ -294,7 +306,10 @@ const EditQuestion = ({
                   }
                 }}
                 InputLabelProps={{
-                  style: { color: Colors.TEXT_TERTIARY }
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12
+                  }
                 }}
                 // fullWidth
                 value={optionD}

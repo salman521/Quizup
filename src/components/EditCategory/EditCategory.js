@@ -96,6 +96,12 @@ const EditCategory = ({
             value={categoryName}
             onChange={e => setCategoryName(e.target.value)}
             fullWidth
+            InputLabelProps={{
+              style: {
+                color: Colors.TEXT_PRIMARY,
+                fontSize: 12
+              }
+            }}
             label="Category Name"
             variant="outlined"
           />

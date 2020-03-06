@@ -37,15 +37,21 @@ const Signup = ({ history, signUp, loading, ...props }) => {
   return (
     <div
       style={{
+        // display: "flex",
+        // flexDirection: "column",
+        // alignSelf: "center",
+        // height: "80vh",
+        // justifyContent: "space-around"
         display: "flex",
         flexDirection: "column",
         alignSelf: "center",
         height: "80vh",
-        justifyContent: "space-around"
+        padding: 90
+        // justifyContent: "space-evenly"
       }}
     >
-      <Typography className="heading" variant="h2">
-        Quiz Up
+      <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
+        Quiz App
       </Typography>
 
       <div className="loginPage">
@@ -65,6 +71,12 @@ const Signup = ({ history, signUp, loading, ...props }) => {
                 style: {
                   color: Colors.TEXT_SECONDARY,
                   fontSize: 14
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
                 }
               }}
               style={{ width: 320 }}
@@ -88,6 +100,12 @@ const Signup = ({ history, signUp, loading, ...props }) => {
                   fontSize: 14
                 }
               }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
+                }
+              }}
               style={{ width: 320 }}
               name="email"
               id="standard-required"
@@ -104,6 +122,12 @@ const Signup = ({ history, signUp, loading, ...props }) => {
                 style: {
                   color: Colors.TEXT_SECONDARY,
                   fontSize: 14
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12
                 }
               }}
               onChange={e => setPassword(e.target.value)}

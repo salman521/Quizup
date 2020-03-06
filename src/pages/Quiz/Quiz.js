@@ -42,7 +42,7 @@ const Quiz = ({
   const [questionNumber, setQuestionNumber] = useState(1);
 
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [time, setTime] = useState(Date.now() + 60000);
+  const [time, setTime] = useState(Date.now() + 10000);
   const classes = useStyles();
 
   useEffect(() => {
@@ -59,7 +59,8 @@ const Quiz = ({
           display: "flex",
           flexDirection: "column",
           alignSelf: "center",
-          height: "80vh",
+          height: "40vh",
+          paddingTop: 200,
           justifyContent: "space-around"
         }}
       >

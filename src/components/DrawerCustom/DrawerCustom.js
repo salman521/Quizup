@@ -265,6 +265,7 @@ const DrawerCustom = ({
                               width: "85%",
                               marginLeft: "12px",
                               height: "50%",
+                              color: Colors.TEXT_PRIMARY,
                               borderRadius: "10px",
                               backgroundColor:
                                 category._id === activeCategoryId
