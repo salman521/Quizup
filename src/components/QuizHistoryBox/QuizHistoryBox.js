@@ -64,7 +64,7 @@ const QuizHistoryBox = ({ quiz, index, ...props }) => {
               <div
                 style={{
                   textAlign: "left",
-                  width: 200,
+                  width: 300,
                   color: Colors.TEXT_SECONDARY
                   // fontWeight: "bold"
                 }}
