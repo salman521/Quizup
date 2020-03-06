@@ -1,27 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  TextField,
-  DialogTitle
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import {
-  Button,
-  MenuItem,
-  Box,
-  FormControl,
-  Fab,
-  InputLabel
-} from "@material-ui/core";
+
+import { MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,19 +20,7 @@ const useStyles = makeStyles({
     backgroundColor: Colors.SECONDARY,
     borderRadius: 6
   },
-  // selectMenu: {
-  //   underline: {
-  //     '&&&:before': {
-  //       borderBottom: 'none'
-  //     },
-  //     '&&:after': {
-  //       borderBottom: 'none'
-  //     }
-  //   },
-  //   marginBottom: 15,
-  //   borderBottom: 'none',
-  //   backgroundColor: 'red'
-  // },
+
   formControl: {
     minWidth: 120
   },
@@ -68,9 +35,6 @@ const CategoriesDropdown = ({
   setQuizCategory,
   ...props
 }) => {
-  // const handleClickOpenDialogs = () => {
-  //   setOpen(true);
-  // };
   const classes = useStyles();
   useEffect(() => {
     getCategories();
@@ -89,17 +53,7 @@ const CategoriesDropdown = ({
           label="To"
           labelId="demo-simple-select-filled-label"
           variant="filled"
-          // style={{
-          //   classes,
-          //   // height: 67,
-          //   backgroundColor: Colors.SECONDARY,
-          //   color: 'red',
-          //   borderRadius: 6,
-          //   // border: '0px',
-          //   marginBottom: 15
-          // }}
           MenuProps={{ classes }}
-          // value={member}
           onChange={e => setQuizCategory(e.target.value)}
           SelectDisplayProps={{
             classes: classes.select,
@@ -110,7 +64,6 @@ const CategoriesDropdown = ({
             }
           }}
           classes={classes}
-          // onChange={handleChange}
         >
           {categories &&
             categories.map((e, i) => (

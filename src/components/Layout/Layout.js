@@ -61,28 +61,6 @@ const Layout = props => {
             backgroundColor: Colors.TERTIARY
           }}
         >
-          {/* <Link
-            style={{
-              textDecoration: "none",
-              // borderRadius: 12,
-              backgroundColor: Colors.TERTIARY
-            }}
-            to="/login"
-          >
-            <Button
-              onClick={() => {
-                // localStorage.clear();
-              }}
-              customStyle={{
-                backgroundColor: Colors.SECONDARY,
-                minWidth: 140,
-                borderRadius: 12,
-                color: Colors.TEXT_SECONDARY,
-                textAlign: "center"
-              }}
-              text="History"
-            />
-          </Link> */}
           <Link
             style={{
               textDecoration: "none",

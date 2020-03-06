@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { getCategories, updateCategory } from "../../actions/category";
 
 const mapStateToProps = ({ category }) => ({
-  categories: category.categories
+  categories: category.categories,
+  loading: category.loading
 });
 
 const mapDispatchToProps = dispatch => ({

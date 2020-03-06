@@ -1,23 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  TextField,
-  Typography,
-  Checkbox,
-  FormControlLabel,
-  Divider,
-  Button
-} from "@material-ui/core";
+import { Grid, TextField, Typography, Button } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import SideBar from "../../components/SideBar";
-import IconButton from "@material-ui/core/IconButton";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import MenuIcon from "@material-ui/icons/Menu";
-import Countdown from "react-countdown";
 
 // import Button from "../../components/Button";
 const useStyles = makeStyles(theme => ({
@@ -77,65 +61,7 @@ const QuizResult = ({ history, quizQuestions, ...props }) => {
                 You got {marks + " "} marks out of {" " + totalMarks}
               </span>
             </div>
-            <div className="data-Input">
-              {/* <div>
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  style={{
-                    // border: "1px solid green",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginLeft: 15,
-                    width: 400
-                  }}
-                  color="primary"
-                  value={indexValue}
-                  onChange={e => {
-                    setIndexValue(e.target.value);
-                  }}
-                >
-                  <FormControlLabel
-                    value="0"
-                    classes={classes}
-                    color="primary"
-                    control={<Radio />}
-                    label={
-                      quizQuestions.length > 0 &&
-                      quizQuestions[questionIndex].answers[0].option
-                    }
-                  />
-                  <FormControlLabel
-                    value="1"
-                    classes={classes}
-                    control={<Radio />}
-                    label={
-                      quizQuestions.length > 0 &&
-                      quizQuestions[questionIndex].answers[1].option
-                    }
-                  />
-                  <FormControlLabel
-                    value="2"
-                    classes={classes}
-                    control={<Radio />}
-                    label={
-                      quizQuestions.length > 0 &&
-                      quizQuestions[questionIndex].answers[2].option
-                    }
-                  />
-                  <FormControlLabel
-                    value="3"
-                    classes={classes}
-                    control={<Radio />}
-                    label={
-                      quizQuestions.length > 0 &&
-                      quizQuestions[questionIndex].answers[3].option
-                    }
-                  />
-                </RadioGroup>
-              </div> */}
-            </div>
-            {/* <Button>Forgot Password?</Button> */}
+
             <Grid>
               <Button
                 onClick={() => {
@@ -151,7 +77,6 @@ const QuizResult = ({ history, quizQuestions, ...props }) => {
           </form>
         </div>
       </div>
-      {/* <SideBar history={history} /> */}
     </div>
   );
 };

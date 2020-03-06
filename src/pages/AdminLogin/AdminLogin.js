@@ -123,8 +123,8 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
             </Button>
           </Grid>
         </form>
-        <div style={{ height: 30, paddingTop: 20 }}>
-          {loading && <CircularProgress />}
+        <div style={{ height: 10, paddingTop: 20 }}>
+          {loading && <CircularProgress size={20} />}
         </div>
       </div>
     </div>

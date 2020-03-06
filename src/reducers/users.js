@@ -46,7 +46,7 @@ export default (state = initalState, action) => {
     case `${UserActions.GET_USER}_${Suffixes.REQUEST}`:
       return {
         ...state,
-        userData: {},
+        // userData: {},
         loading: true
       };
     case `${UserActions.GET_USER}_${Suffixes.SUCCESS}`:

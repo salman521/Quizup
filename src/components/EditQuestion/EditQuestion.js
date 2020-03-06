@@ -1,33 +1,19 @@
 import React, { Component, useState, useEffect, memo } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import {
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   TextField,
-  DialogTitle,
   FormControlLabel,
   Checkbox
 } from "@material-ui/core";
-// import Button from '@material-ui/core/Button';
-import AddIcon from "@material-ui/icons/Add";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import moment from "moment";
+
 import Button from "../Button";
-import { Tabs, Tab } from "@material-ui/core";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
@@ -406,13 +392,13 @@ const EditQuestion = ({
           </div>
           <div
             style={{
-              height: 30,
+              height: 10,
               paddingTop: 20,
               display: "flex",
               justifyContent: "center"
             }}
           >
-            {loading && <CircularProgress color="secondary" />}
+            {loading && <CircularProgress size={20} color="secondary" />}
           </div>
         </div>
       </DialogContent>

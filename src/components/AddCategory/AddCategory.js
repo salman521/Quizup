@@ -1,24 +1,8 @@
 import React, { Component, useState, useEffect } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import * as Colors from "../../styles/colors";
 // import Checkbox from 'react-toolbox/lib/checkbox';
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  TextField,
-  DialogTitle,
-  FormControlLabel,
-  Checkbox
-} from "@material-ui/core";
+import { Dialog, DialogContent, TextField } from "@material-ui/core";
 import Button from "../Button";
-import AddIcon from "@material-ui/icons/Add";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const AddCategory = ({
@@ -30,9 +14,6 @@ const AddCategory = ({
   loading,
   ...props
 }) => {
-  const handleClickOpenDialogs = () => {
-    setOpen(true);
-  };
   const [categoryName, setCategoryName] = useState("");
 
   const handleCloseDialogs = () => {
