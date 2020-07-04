@@ -10,8 +10,8 @@ import { uploadImage, postProduct } from "../../actions/users";
 // import {addBooking, getBookings, getBookedSlots} from '../../actions/booking';
 
 const mapStateToProps = ({ question }) => ({
-  questionData: question.questionData,
-  loading: question.loading,
+  // questionData: question.questionData,
+  // loading: question.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

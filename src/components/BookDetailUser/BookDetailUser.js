@@ -1,7 +1,5 @@
 import React, { Component, useState, useEffect, memo } from "react";
 import * as Colors from "../../styles/colors";
-import AddQuestion from "../AddQuestion";
-import QuestionsBox from "../QuestionsBox";
 import Dashboard from "../Dashboard";
 import Categories from "../Categories";
 import Products from "../Products";
@@ -13,7 +11,6 @@ import Payments from "../Payments";
 import { Fab } from "@material-ui/core";
 import NavBar from "../NavBar";
 import AddIcon from "@material-ui/icons/Add";
-import History from "../History";
 
 const BookDetailUser = ({
   activePageName,

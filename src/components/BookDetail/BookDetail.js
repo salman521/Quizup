@@ -1,11 +1,9 @@
 import React, { Component, useState, useEffect, memo } from "react";
 import * as Colors from "../../styles/colors";
-import AddQuestion from "../AddQuestion";
 import QuestionsBox from "../QuestionsBox";
 import { Fab } from "@material-ui/core";
 import NavBar from "../NavBar";
 import AddIcon from "@material-ui/icons/Add";
-import History from "../History";
 
 const BookDetail = ({
   setActiveCategoryId,
@@ -29,9 +27,7 @@ const BookDetail = ({
             setSelectedBox={setSelectedBox}
           /> */}
         </div>
-        <h1>
-          {selectedBox === "questions" ? "Questions" : "Users Quiz History"}
-        </h1>
+        <h1>{selectedBox === "questions" ? "Managers" : "Managers"}</h1>
 
         <div
           style={{
@@ -42,9 +38,6 @@ const BookDetail = ({
         >
           {selectedBox === "questions" && (
             <QuestionsBox activeCategoryId={activeCategoryId} />
-          )}
-          {selectedBox === "history" && (
-            <History activeCategoryId={activeCategoryId} />
           )}
         </div>
       </div>

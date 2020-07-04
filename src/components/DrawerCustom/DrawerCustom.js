@@ -6,7 +6,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Button from "../Button";
 import Popover from "@material-ui/core/Popover";
 import AddCategory from "../AddCategory";
-import EditCategory from "../EditCategory";
 
 import { makeStyles } from "@material-ui/core/styles";
 import * as Colors from "../../styles/colors";
@@ -83,11 +82,6 @@ const DrawerCustom = ({
 
   return (
     <div>
-      <EditCategory
-        openEditCategoryDialog={openEditCategoryDialog}
-        activeCategoryId={activeCategoryId}
-        setOpenEditCategoryDialog={setOpenEditCategoryDialog}
-      />
       {/* ////////////////////////////////////// Popover Code Start////////////////////////////////// */}
       <Popover
         id={id}

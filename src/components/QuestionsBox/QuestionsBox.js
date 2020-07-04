@@ -21,8 +21,6 @@ import Button from "@material-ui/core/Button";
 import moment from "moment";
 import AddIcon from "@material-ui/icons/Add";
 import Question from "../Question";
-import EditQuestion from "../EditQuestion";
-import { getUsers } from "../../actions/users";
 
 const QuestionsBox = ({
   activeCategoryId,

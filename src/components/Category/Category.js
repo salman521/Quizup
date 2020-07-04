@@ -19,7 +19,6 @@ import Popover from "@material-ui/core/Popover";
 import Button from "../Button";
 import AddIcon from "@material-ui/icons/Add";
 import * as Colors from "../../styles/colors";
-import EditQuestion from "../EditQuestion";
 
 const Category = ({
   t,

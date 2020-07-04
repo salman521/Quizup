@@ -6,7 +6,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Button from "../Button";
 import Popover from "@material-ui/core/Popover";
 import AddCategory from "../AddCategory";
-import EditCategory from "../EditCategory";
 
 import { makeStyles } from "@material-ui/core/styles";
 import * as Colors from "../../styles/colors";
@@ -83,73 +82,6 @@ const DrawerCustomUser = ({
 
   return (
     <div>
-      {/* ////////////////////////////////////// Popover Code Start////////////////////////////////// */}
-      {/* <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        PaperProps={{
-          style: { borderRadius: 8, backgroundColor: Colors.TERTIARY },
-        }}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-
-          horizontal: "right",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: Colors.TERTIARY,
-            // borderRadius: 10,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Button
-            onClick={(event) => {
-              // setMemberId(member.id);
-              setOpenEditCategoryDialog(!openEditCategoryDialog);
-              setAnchorEl(null);
-            }}
-            customStyle={{
-              backgroundColor: Colors.TERTIARY,
-              color: Colors.TEXT_TERTIARY,
-              textAlign: "left",
-            }}
-            text={"Edit Category"}
-          />
-          <Button
-            onClick={() => {
-              deleteCategory(activeCategoryId)
-                .then((res) => {
-                  getCategories().then((res) => {
-                    setActiveCategoryId(res.value.data[0]._id);
-                    setAnchorEl(null);
-                  });
-                })
-                .catch((err) => alert("Cannot delete Category"));
-            }}
-            customStyle={{
-              backgroundColor: Colors.TERTIARY,
-              color: Colors.TEXT_TERTIARY,
-              textAlign: "left",
-            }}
-            text={"Delete Category"}
-          />
-        </div>
-      </Popover> */}
-      {/* ////////////////////////////////////// Popover Code End //////////////////////////// */}
-
-      {/* <AddCategory
-        organizationName={organization && organization.organizationName}
-        openDialog={openDialog}
-        setOpen={setOpen}
-      /> */}
       <div
         style={{
           backgroundColor: Colors.PRIMARY,
