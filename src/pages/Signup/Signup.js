@@ -6,17 +6,18 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
+import CatDropdown from "../../components/CatDropdown";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1
 
-    width: 120
+    width: 120,
   },
   // menuButton: {
   //   marginRight: theme.spacing(2)
@@ -25,13 +26,15 @@ const useStyles = makeStyles(theme => ({
   text: {
     fontSize: 13,
     color: Colors.TEXT_SECONDARY,
-    backgroundColor: Colors.SECONDARY
-  }
+    backgroundColor: Colors.SECONDARY,
+  },
 }));
 const Signup = ({ history, signUp, loading, ...props }) => {
+  const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [name, setName] = useState();
+  const [shopName, setShopName] = useState();
+  const [shopCategory, setShopCategory] = useState();
   const classes = useStyles();
 
   return (
@@ -45,13 +48,15 @@ const Signup = ({ history, signUp, loading, ...props }) => {
         display: "flex",
         flexDirection: "column",
         alignSelf: "center",
-        height: "80vh",
-        padding: 90
+        backgroundColor: Colors.PRIMARY,
+        // height: "80vh",
+        padding: 30,
+        // border: '1px solid red'
         // justifyContent: "space-evenly"
       }}
     >
-      <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
-        Quiz App
+      <Typography style={{ marginBottom: 30 }} className="heading" variant="h4">
+        Smart Shopping Bot
       </Typography>
 
       <div className="loginPage">
@@ -63,48 +68,76 @@ const Signup = ({ history, signUp, loading, ...props }) => {
             <TextField
               type="text"
               value={name}
-              onChange={e => {
+              onChange={(e) => {
                 setName(e.target.value);
               }}
               required
               InputProps={{
                 style: {
                   color: Colors.TEXT_SECONDARY,
-                  fontSize: 14
-                }
+                  fontSize: 14,
+                },
               }}
               InputLabelProps={{
                 style: {
                   color: Colors.TEXT_PRIMARY,
-                  fontSize: 12
-                }
+                  fontSize: 12,
+                },
               }}
               style={{ width: 320 }}
-              name="email"
               id="standard-required"
-              label="Enter Name"
+              label="Enter Full Name"
               margin="normal"
             />
           </div>
           <div className="data-Input">
             <TextField
               type="text"
+              value={shopName}
+              onChange={(e) => {
+                setShopName(e.target.value);
+              }}
+              required
+              InputProps={{
+                style: {
+                  color: Colors.TEXT_SECONDARY,
+                  fontSize: 14,
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: Colors.TEXT_PRIMARY,
+                  fontSize: 12,
+                },
+              }}
+              style={{ width: 320 }}
+              id="standard-required"
+              label="Enter Shop Name"
+              margin="normal"
+            />
+          </div>
+          <div className="data-Input" style={{ paddingTop: 10 }}>
+            <CatDropdown setCategory={setShopCategory} />
+          </div>
+          <div className="data-Input">
+            <TextField
+              type="text"
               value={email}
-              onChange={e => {
+              onChange={(e) => {
                 setEmail(e.target.value);
               }}
               required
               InputProps={{
                 style: {
                   color: Colors.TEXT_SECONDARY,
-                  fontSize: 14
-                }
+                  fontSize: 14,
+                },
               }}
               InputLabelProps={{
                 style: {
                   color: Colors.TEXT_PRIMARY,
-                  fontSize: 12
-                }
+                  fontSize: 12,
+                },
               }}
               style={{ width: 320 }}
               name="email"
@@ -121,16 +154,16 @@ const Signup = ({ history, signUp, loading, ...props }) => {
               InputProps={{
                 style: {
                   color: Colors.TEXT_SECONDARY,
-                  fontSize: 14
-                }
+                  fontSize: 14,
+                },
               }}
               InputLabelProps={{
                 style: {
                   color: Colors.TEXT_PRIMARY,
-                  fontSize: 12
-                }
+                  fontSize: 12,
+                },
               }}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               required
               fullWidth
               name="password"
@@ -146,14 +179,14 @@ const Signup = ({ history, signUp, loading, ...props }) => {
               className="button-Signup"
               onClick={() => {
                 if (email && password && name !== "") {
-                  var data = { email, password, name };
+                  var data = { email, password, name, shopName, shopCategory };
                   console.log(data, "ss");
                   signUp(data)
-                    .then(res => {
+                    .then((res) => {
                       history.push("/login");
                     })
-                    .catch(err => {
-                      alert("Opps Cannot Signup");
+                    .catch((err) => {
+                      alert(err.response.data.message);
                     });
                 } else {
                   alert("Please fill all fields");

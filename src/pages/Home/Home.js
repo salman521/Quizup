@@ -5,23 +5,23 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import * as Colors from "../../styles/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import CategoriesDropdown from "../../components/CategoriesDropdown";
+import UserSidebar from "../../components/UserSidebar";
 import Button from "../../components/Button";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 const Home = ({
   history,
@@ -31,58 +31,14 @@ const Home = ({
   getQuestions,
   ...props
 }) => {
+  console.log(userData, "userData");
   useEffect(() => {
     getUser();
     // alert("hi");
   }, [userData === null]);
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignSelf: "center",
-          height: "30vh",
-          justifyContent: "space-around"
-        }}
-      >
-        <Typography className="heading" variant="h4">
-          {userData && userData.name}
-        </Typography>
-        <Typography style={{ color: Colors.TEXT_TERTIARY }} variant="h5">
-          Please choose your desired quiz category
-        </Typography>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 150
-        }}
-      >
-        <CategoriesDropdown />
-        {category && (
-          <Button
-            onClick={() => {
-              getQuestions(category).then(res => {
-                history.push("/quiz");
-              });
-            }}
-            disabled={true}
-            customStyle={{
-              backgroundColor: Colors.FOCUSED,
-              minWidth: 140,
-              borderRadius: 12,
-              color: Colors.TEXT_PRIMARY,
-
-              textAlign: "center"
-            }}
-            text="Start Quiz"
-          />
-        )}
-      </div>
+      <UserSidebar history={history} />
     </div>
   );
 };

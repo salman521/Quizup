@@ -146,6 +146,7 @@ const SideBar = ({
               />
             </div>
           </div>
+
         </Popover>
         {/* ////////////////////////////////////// Popover Code End ////////////////////////////////// */}
 
@@ -269,6 +270,35 @@ const SideBar = ({
                   <ListItemText
                     style={{ color: Colors.TEXT_PRIMARY }}
                     primary="Logout"
+                  />
+                </div>
+              </div>
+              {/* ////////////////////////////////// */}
+              <div style={{ position: "absolute", bottom: 60 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginLeft: 16
+                  }}
+                  // button
+                  onClick={event => {
+                    alert('Feature In Progress')
+                  }}
+                >
+                  <ListItemIcon>
+                    <img
+                      src={require("../../Image/preferences.png")}
+                      width="auto"
+                      style={{ marginLeft: "5px" }}
+                      height="18"
+                      alt="Logo"
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    style={{ color: Colors.TEXT_PRIMARY }}
+                    primary="Change Password"
                   />
                 </div>
               </div>

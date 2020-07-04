@@ -33,7 +33,7 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
       }}
     >
       <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
-        Quiz App
+        Smart Shopping Bot
       </Typography>
 
       <div className="loginPage">
@@ -115,9 +115,13 @@ const Login = ({ history, login, setUserType, loading, ...props }) => {
                       localStorage.setItem("userType", "user");
                       history.push("/home");
                     })
-                    .catch(err => {
-                      alert("Email or Password incorrect");
-                    });
+                    .catch(error => {
+                      alert(error.response.data.message)
+                    })
+                  // .catch(err => {
+
+                  //   alert("Email or Password incorrect");
+                  // });
                 } else {
                   alert(
                     email === ""

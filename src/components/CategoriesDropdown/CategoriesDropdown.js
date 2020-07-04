@@ -9,35 +9,36 @@ const useStyles = makeStyles({
   root: {
     underline: {
       "&&&:before": {
-        borderBottom: "none"
+        borderBottom: "none",
       },
       "&&:after": {
-        borderBottom: "none"
-      }
+        borderBottom: "none",
+      },
     },
     // marginBottom: 15,
     border: "none",
     backgroundColor: Colors.SECONDARY,
-    borderRadius: 6
+    borderRadius: 6,
   },
 
   formControl: {
-    minWidth: 120
+    height: 50,
+    minWidth: 120,
   },
   paper: {
     backgroundColor: Colors.SECONDARY,
-    color: Colors.TEXT_TERTIARY
-  }
+    color: Colors.TEXT_TERTIARY,
+  },
 });
 const CategoriesDropdown = ({
   getCategories,
   categories,
-  setQuizCategory,
+  setCategory,
   ...props
 }) => {
   const classes = useStyles();
   useEffect(() => {
-    getCategories();
+    getCategories(localStorage.getItem("id"));
   }, [categories === null]);
 
   return (
@@ -54,14 +55,14 @@ const CategoriesDropdown = ({
           labelId="demo-simple-select-filled-label"
           variant="filled"
           MenuProps={{ classes }}
-          onChange={e => setQuizCategory(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
           SelectDisplayProps={{
             classes: classes.select,
             style: {
               color: Colors.TEXT_SECONDARY,
               minWidth: "23vw",
-              fontSize: 18
-            }
+              fontSize: 15,
+            },
           }}
           classes={classes}
         >

@@ -7,24 +7,26 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import {
   Dialog,
   DialogContent,
+  DialogActions,
   TextField,
-  FormControlLabel
+  FormControlLabel,
 } from "@material-ui/core";
+import CategoriesDropdown from "../CategoriesDropdown";
 
 import Button from "../Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
   root: {
-    color: Colors.FOCUSED
+    color: Colors.FOCUSED,
   },
   radio: {
     "&$checked": {
-      color: "#4B8DF8"
-    }
-  }
+      color: "#4B8DF8",
+    },
+  },
 });
-const AddQuestion = ({
+const AddProduct = ({
   open,
   handleClose,
   questionData,
@@ -37,35 +39,77 @@ const AddQuestion = ({
   activeCategoryId,
   postQuestion,
   getQuestions,
+  uploadImage,
   loading,
+  getProducts,
+  postProduct,
   ...props
 }) => {
   const classes = useStyles();
+  const [file, setFile] = useState(null);
+
+  const [name, setName] = useState("");
+  const [detail, setDetail] = useState("");
+  const [productImage, setProductImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+
+  let fileInput = React.createRef();
 
   const handleCloseDialogs = () => {
-    const { question, answers, answerindex } = questionData;
-
+    const data = {
+      name,
+      detail,
+      image: productImage,
+      price,
+      size,
+      color,
+      quantity,
+      category,
+      userId: localStorage.getItem("id"),
+    };
+    console.log(data, "data");
     if (
-      question &&
-      answers[0].option &&
-      answers[1].option &&
-      answers[2].option &&
-      answers[3].option !== "" &&
-      answerindex !== -1
+      name !== "" &&
+      detail !== "" &&
+      productImage !== "" &&
+      price !== "" &&
+      size !== "" &&
+      category !== ""
     ) {
-      questionData.activeCategoryId = activeCategoryId;
-      postQuestion(questionData)
-        .then(res => {
-          getQuestions(activeCategoryId).then(res => {
-            handleClose();
-          });
+      postProduct(data)
+        .then((res) => {
+          getProducts(localStorage.getItem("id"))
+            .then((res) => {
+              handleClose(!open);
+            })
+            .catch((err) => {
+              alert(err.message);
+            });
         })
-        .catch(err => {
-          alert("cannot add question");
-        });
+        .catch((err) => {});
     } else {
-      alert("Please fill all fields");
+      alert("Please Fill all fields");
     }
+  };
+
+  const handleImageChange = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    uploadImage(file).then((res) => {
+      setProductImage(res.value[0].mediaSource);
+    });
+    reader.onloadend = () => {
+      setFile(file);
+      console.log(file, "file");
+      // setImagePreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -76,8 +120,9 @@ const AddQuestion = ({
       PaperProps={{
         style: {
           borderRadius: 22,
-          backgroundColor: Colors.TERTIARY
-        }
+          height: 990,
+          backgroundColor: Colors.TERTIARY,
+        },
       }}
       // fullWidth
 
@@ -88,7 +133,7 @@ const AddQuestion = ({
         style={{
           backgroundColor: Colors.TERTIARY,
           display: "flex",
-          padding: 38
+          padding: 38,
         }}
       >
         <div>
@@ -97,12 +142,14 @@ const AddQuestion = ({
               height: 40,
               fontSize: 25,
               color: Colors.TEXT_SECONDARY,
-              marginBottom: 15
+              justifyContent: "center",
+              textAlign: "center",
+              // marginBottom: 15,
             }}
           >
-            New Question
+            New Product
           </div>
-          <div style={{ height: 400, width: 500 }}>
+          <div style={{ height: 300, width: 500 }}>
             <div>
               <TextField
                 // margin='dense'
@@ -115,30 +162,30 @@ const AddQuestion = ({
                   color: "red",
                   borderRadius: 6,
                   border: "0px",
-                  marginBottom: 15
+                  marginBottom: 15,
                 }}
                 InputProps={{
                   style: {
-                    color: Colors.FOCUSED
-                    // height: 67,
+                    color: Colors.FOCUSED,
+                    height: 47,
                     // width: 300
 
                     // fontSize: 28
-                  }
+                  },
                 }}
                 InputLabelProps={{
                   style: {
                     color: Colors.TEXT_PRIMARY,
-                    fontSize: 12
-                  }
+                    fontSize: 12,
+                  },
                 }}
                 fullWidth
-                value={questionData.question}
-                onChange={e => setQuestion(e.target.value)}
-                label="Question"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                label="Name"
               />
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
               <TextField
                 // margin='dense'
                 name="amount"
@@ -150,217 +197,213 @@ const AddQuestion = ({
                   color: "red",
                   borderRadius: 6,
                   border: "0px",
-                  alignSelf: "center",
-
-                  marginBottom: 15
+                  marginBottom: 15,
                 }}
                 InputProps={{
                   style: {
                     color: Colors.FOCUSED,
-                    // height: 67,
-                    width: 250
+                    height: 47,
+                    // width: 300
 
                     // fontSize: 28
-                  }
+                  },
                 }}
                 InputLabelProps={{
                   style: {
                     color: Colors.TEXT_PRIMARY,
-                    fontSize: 12
-                  }
+                    fontSize: 12,
+                  },
                 }}
-                // fullWidth
-                // value={questionData.answers[0].option}
-
-                onChange={e => setOptionA(e.target.value)}
-                label="Option A"
-              />
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TextField
-                // margin='dense'
-                name="amount"
-                type="text"
-                variant="outlined"
-                style={{
-                  // height: 67,
-                  backgroundColor: Colors.SECONDARY,
-                  color: "red",
-                  borderRadius: 6,
-                  border: "0px",
-                  alignSelf: "center",
-
-                  marginBottom: 15
-                }}
-                InputProps={{
-                  style: {
-                    color: Colors.FOCUSED,
-                    // height: 67,
-                    width: 250
-
-                    // fontSize: 28
-                  }
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: Colors.TEXT_PRIMARY,
-                    fontSize: 12
-                  }
-                }}
-                // fullWidth
-                // value={question}
-
-                onChange={e => setOptionB(e.target.value)}
-                label="Option B"
-              />
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TextField
-                // margin='dense'
-                name="amount"
-                type="text"
-                variant="outlined"
-                style={{
-                  // height: 67,
-                  backgroundColor: Colors.SECONDARY,
-                  color: "red",
-                  borderRadius: 6,
-                  border: "0px",
-                  alignSelf: "center",
-
-                  marginBottom: 15
-                }}
-                InputProps={{
-                  style: {
-                    color: Colors.FOCUSED,
-                    // height: 67,
-                    width: 250
-
-                    // fontSize: 28
-                  }
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: Colors.TEXT_PRIMARY,
-                    fontSize: 12
-                  }
-                }}
-                // fullWidth
-                // value={question}
-
-                onChange={e => setOptionC(e.target.value)}
-                label="Option C"
-              />
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TextField
-                // margin='dense'
-                name="amount"
-                type="text"
-                variant="outlined"
-                style={{
-                  // height: 67,
-                  backgroundColor: Colors.SECONDARY,
-                  color: "red",
-                  borderRadius: 6,
-                  border: "0px",
-                  alignSelf: "center",
-
-                  marginBottom: 15
-                }}
-                InputProps={{
-                  style: {
-                    color: Colors.FOCUSED,
-                    // height: 67,
-                    width: 250
-
-                    // fontSize: 28
-                  }
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: Colors.TEXT_PRIMARY,
-                    fontSize: 12
-                  }
-                }}
-                // fullWidth
-                // value={question}
-
-                onChange={e => setOptionD(e.target.value)}
-                label="Option D"
+                fullWidth
+                value={detail}
+                onChange={(e) => setDetail(e.target.value)}
+                label="Detail"
               />
             </div>
             <div
               style={{
+                // width: 400,
+                marginBottom: 15,
                 display: "flex",
-                // justifyContent: "center",
-                alignItems: "center"
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              <span style={{ color: Colors.FOCUSED, marginRight: 25 }}>
-                Correct Answer:
+              <span style={{ color: Colors.TEXT_SECONDARY, fontSize: 24 }}>
+                Upload Image
               </span>
-              <div>
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  style={{
-                    // border: "1px solid green",
-                    display: "flex",
-                    flexDirection: "row"
-                  }}
-                  color="primary"
-                  // value={questionData.answerindex}
-                  onChange={e => {
-                    setAnswerIndex(e.target.value);
-                  }}
-                >
-                  <FormControlLabel
-                    value="0"
-                    classes={classes}
-                    color="primary"
-                    control={<Radio />}
-                    label="A"
-                  />
-                  <FormControlLabel
-                    value="1"
-                    classes={classes}
-                    control={<Radio />}
-                    label="B"
-                  />
-                  <FormControlLabel
-                    value="2"
-                    classes={classes}
-                    control={<Radio />}
-                    label="C"
-                  />
-                  <FormControlLabel
-                    value="3"
-                    classes={classes}
-                    control={<Radio />}
-                    label="D"
-                  />
-                </RadioGroup>
-              </div>
+              <input
+                type="file"
+                onChange={handleImageChange}
+                ref={fileInput}
+                id="file"
+                aria-label="File browser example"
+              />
+            </div>
+            <div style={{ marginBottom: 15 }}>
+              <CategoriesDropdown setCategory={setCategory} />
+            </div>
+            <div>
+              <TextField
+                // margin='dense'
+                name="amount"
+                type="text"
+                variant="outlined"
+                style={{
+                  // height: 67,
+                  backgroundColor: Colors.SECONDARY,
+                  color: "red",
+                  borderRadius: 6,
+                  border: "0px",
+                  marginBottom: 15,
+                }}
+                InputProps={{
+                  style: {
+                    color: Colors.FOCUSED,
+                    height: 47,
+                    // width: 300
+
+                    // fontSize: 28
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12,
+                  },
+                }}
+                fullWidth
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                label="Price"
+              />
+            </div>
+            <div>
+              <TextField
+                // margin='dense'
+                name="amount"
+                type="text"
+                variant="outlined"
+                style={{
+                  // height: 67,
+                  backgroundColor: Colors.SECONDARY,
+                  color: "red",
+                  borderRadius: 6,
+                  border: "0px",
+                  marginBottom: 15,
+                }}
+                InputProps={{
+                  style: {
+                    color: Colors.FOCUSED,
+                    height: 47,
+                    // width: 300
+
+                    // fontSize: 28
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12,
+                  },
+                }}
+                fullWidth
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+                label="Size (Optional)"
+              />
+            </div>
+            <div>
+              <TextField
+                // margin='dense'
+                name="amount"
+                type="text"
+                variant="outlined"
+                style={{
+                  // height: 67,
+                  backgroundColor: Colors.SECONDARY,
+                  color: "red",
+                  borderRadius: 6,
+                  border: "0px",
+                  marginBottom: 15,
+                }}
+                InputProps={{
+                  style: {
+                    color: Colors.FOCUSED,
+                    height: 47,
+                    // width: 300
+
+                    // fontSize: 28
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12,
+                  },
+                }}
+                fullWidth
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                label="Color (Optional)"
+              />
+            </div>
+            <div>
+              <TextField
+                // margin='dense'
+                name="amount"
+                type="text"
+                variant="outlined"
+                style={{
+                  // height: 67,
+                  backgroundColor: Colors.SECONDARY,
+                  color: "red",
+                  borderRadius: 6,
+                  border: "0px",
+                  marginBottom: 15,
+                }}
+                InputProps={{
+                  style: {
+                    color: Colors.FOCUSED,
+                    height: 47,
+                    // width: 300
+
+                    // fontSize: 28
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: Colors.TEXT_PRIMARY,
+                    fontSize: 12,
+                  },
+                }}
+                fullWidth
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                label="Quantity"
+              />
             </div>
           </div>
           <div
             style={{
               // border: '1px solid red',
+              position: "relative",
+              top: "180px",
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-evenly"
+              justifyContent: "space-evenly",
             }}
           >
             <Button
-              onClick={handleClose}
+              onClick={() => handleClose()}
               customStyle={{
                 backgroundColor: Colors.PRIMARY,
                 minWidth: 150,
                 borderRadius: 12,
                 color: Colors.TEXT_TERTIARY,
 
-                textAlign: "center"
+                textAlign: "center",
               }}
               text="Cancel"
             />
@@ -373,7 +416,7 @@ const AddQuestion = ({
 
                 borderRadius: 12,
                 color: Colors.TEXT_PRIMARY,
-                textAlign: "center"
+                textAlign: "center",
               }}
               text="Add"
             />
@@ -383,7 +426,7 @@ const AddQuestion = ({
               height: 10,
               paddingTop: 20,
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             {loading && <CircularProgress size={20} color="secondary" />}
@@ -391,11 +434,11 @@ const AddQuestion = ({
         </div>
       </DialogContent>
 
-      {/* <DialogActions style={{ backgroundColor: Colors.TERTIARY }}>
-        
-        </DialogActions> */}
+      <DialogActions
+        style={{ backgroundColor: Colors.TERTIARY }}
+      ></DialogActions>
     </Dialog>
   );
 };
 
-export default AddQuestion;
+export default AddProduct;

@@ -1,16 +1,16 @@
-import { UserActions, url } from "../actionTypes";
+import { UserActions, url, uploadImages } from "../actionTypes";
 import axios from "axios";
 
-export const signUp = userData => {
+export const signUp = (userData) => {
   return {
     type: `${UserActions.USER_SIGNUP}`,
-    payload: axios.post(`${url}users/signup`, userData)
+    payload: axios.post(`${url}users/signup`, userData),
   };
 };
-export const login = userData => {
+export const login = (userData) => {
   return {
     type: `${UserActions.USER_LOGIN}`,
-    payload: axios.post(`${url}users/login`, userData)
+    payload: axios.post(`${url}users/login`, userData),
   };
 };
 export const getUser = () => {
@@ -18,12 +18,34 @@ export const getUser = () => {
 
   return {
     type: `${UserActions.GET_USER}`,
-    payload: axios.get(`${url}users/getUser/${id}`)
+    payload: axios.get(`${url}users/getUser/${id}`),
   };
 };
 export const getUsers = () => {
   return {
     type: `${UserActions.GET_USERS}`,
-    payload: axios.get(`${url}users`)
+    payload: axios.get(`${url}users`),
+  };
+};
+export const uploadImage = (image) => {
+  return {
+    type: `${UserActions.UPLOAD_IMAGE}`,
+    payload: uploadImages(image),
+  };
+};
+export const postProduct = (data) => {
+  return {
+    type: `${UserActions.POST_PRODUCT}`,
+    payload: axios.post(`${url}products`, data),
+  };
+};
+export const deleteProduct = (id) => {
+  return {
+    type: `${UserActions.DELETE_PRODUCT}`,
+    payload: axios.delete(`${url}products`, {
+      params: {
+        id,
+      },
+    }),
   };
 };

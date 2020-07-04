@@ -15,28 +15,28 @@ const useStyles = makeStyles({
   select: {
     underline: {
       "&&&:before": {
-        borderBottom: "none"
+        borderBottom: "none",
       },
       "&&:after": {
-        borderBottom: "none"
-      }
+        borderBottom: "none",
+      },
     },
     // marginBottom: 15,
     border: "none",
     backgroundColor: Colors.SECONDARY,
-    borderRadius: 6
+    borderRadius: 6,
   },
   formControl: {
     // minWidth: 120
   },
   paper: {
     backgroundColor: Colors.SECONDARY,
-    color: "red"
+    color: "red",
   },
   root: {
     width: "100%",
-    maxWidth: 360
-  }
+    maxWidth: 360,
+  },
 });
 
 const DrawerCustom = ({
@@ -55,7 +55,7 @@ const DrawerCustom = ({
   const [organization, setOrganization] = useState();
 
   useEffect(() => {
-    getCategories().then(res => {
+    getCategories().then((res) => {
       if (res.value.data.length > 0) {
         setActiveCategoryId(res.value.data[0]._id);
       }
@@ -95,16 +95,16 @@ const DrawerCustom = ({
         anchorEl={anchorEl}
         onClose={handleClose}
         PaperProps={{
-          style: { borderRadius: 8, backgroundColor: Colors.TERTIARY }
+          style: { borderRadius: 8, backgroundColor: Colors.TERTIARY },
         }}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "right"
+          horizontal: "right",
         }}
         transformOrigin={{
           vertical: "top",
 
-          horizontal: "right"
+          horizontal: "right",
         }}
       >
         <div
@@ -112,11 +112,11 @@ const DrawerCustom = ({
             backgroundColor: Colors.TERTIARY,
             // borderRadius: 10,
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
           }}
         >
           <Button
-            onClick={event => {
+            onClick={(event) => {
               // setMemberId(member.id);
               setOpenEditCategoryDialog(!openEditCategoryDialog);
               setAnchorEl(null);
@@ -124,25 +124,25 @@ const DrawerCustom = ({
             customStyle={{
               backgroundColor: Colors.TERTIARY,
               color: Colors.TEXT_TERTIARY,
-              textAlign: "left"
+              textAlign: "left",
             }}
             text={"Edit Category"}
           />
           <Button
             onClick={() => {
               deleteCategory(activeCategoryId)
-                .then(res => {
-                  getCategories().then(res => {
+                .then((res) => {
+                  getCategories().then((res) => {
                     setActiveCategoryId(res.value.data[0]._id);
                     setAnchorEl(null);
                   });
                 })
-                .catch(err => alert("Cannot delete Category"));
+                .catch((err) => alert("Cannot delete Category"));
             }}
             customStyle={{
               backgroundColor: Colors.TERTIARY,
               color: Colors.TEXT_TERTIARY,
-              textAlign: "left"
+              textAlign: "left",
             }}
             text={"Delete Category"}
           />
@@ -159,7 +159,7 @@ const DrawerCustom = ({
         style={{
           backgroundColor: Colors.PRIMARY,
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
         }}
       >
         <div
@@ -168,7 +168,7 @@ const DrawerCustom = ({
             height: "100vh",
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
-            borderColor: Colors.SECONDARY
+            borderColor: Colors.SECONDARY,
           }}
         >
           <div
@@ -178,7 +178,7 @@ const DrawerCustom = ({
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "space-evenly"
+              justifyContent: "space-evenly",
             }}
           >
             <div>
@@ -197,7 +197,7 @@ const DrawerCustom = ({
                 textAlign: "left",
                 color: Colors.TEXT_TERTIARY,
                 fontSize: 14,
-                minWidth: "140px"
+                minWidth: "140px",
               }}
             >
               <span
@@ -207,106 +207,45 @@ const DrawerCustom = ({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
-                {adminData ? adminData.name : "No Org"}
+                {adminData ? "Admin" : "No Org"}
               </span>
 
               {userData && userData.firstName + " " + userData.lastName}
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between"
-            }}
-          >
+
+          <div style={{ height: "60vh", marginTop: 15 }}>
             <div
               style={{
-                textAlign: "left",
-                marginLeft: "30px",
-                fontWeight: "bold",
-                color: Colors.TEXT_SECONDARY
+                height: "50vh",
+                overflow: "auto",
               }}
             >
-              Categories
+              <List>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <ListItem
+                    // button
+                    style={{
+                      width: "85%",
+                      marginLeft: "12px",
+                      height: "50%",
+                      color: Colors.TEXT_PRIMARY,
+                      borderRadius: "10px",
+                      backgroundColor: Colors.FOCUSED,
+                    }}
+                    onClick={() => {
+                      // setActiveCategoryId(category._id);
+                      // setMobileOpen(false);
+                    }}
+                  >
+                    <ListItemText primary={"Managers"} />
+                  </ListItem>
+                </div>
+              </List>
             </div>
-            <img
-              src={require("../../Image/add.png")}
-              onClick={() => {
-                setOpen(true);
-              }}
-              width="auto"
-              style={{ marginRight: "30px" }}
-              height="20"
-              alt="Logo"
-            />
-          </div>
-          <div style={{ height: "60vh", marginTop: 15 }}>
-            {categories ? (
-              <div
-                style={{
-                  height: "50vh",
-                  overflow: "auto"
-                }}
-              >
-                <List>
-                  {categories.length >= 1 ? (
-                    categories.map((category, index) => {
-                      return (
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <ListItem
-                            key={index}
-                            // button
-                            style={{
-                              width: "85%",
-                              marginLeft: "12px",
-                              height: "50%",
-                              color: Colors.TEXT_PRIMARY,
-                              borderRadius: "10px",
-                              backgroundColor:
-                                category._id === activeCategoryId
-                                  ? Colors.FOCUSED
-                                  : Colors.SECONDARY
-                            }}
-                            onClick={() => {
-                              setActiveCategoryId(category._id);
-                              // setMobileOpen(false);
-                            }}
-                            key={index}
-                          >
-                            <ListItemText primary={category.name} />
-                          </ListItem>
-                          {category._id === activeCategoryId && (
-                            <ListItemIcon
-                              onClick={event => {
-                                setAnchorEl(event.currentTarget);
-                              }}
-                              style={{ minWidth: "10px", marginLeft: 10 }}
-                            >
-                              <img
-                                src={require("../../Image/menu.png")}
-                                // width={"11"}
-                                height="11"
-                                // style={{ marginRight: '3px' }}
-                                alt="Logo"
-                              />
-                            </ListItemIcon>
-                          )}
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div style={{ height: "100vh" }}>No Categories</div>
-                  )}
-                </List>
-              </div>
-            ) : (
-              <div style={{ height: "100vh" }}>No Categories</div>
-            )}
           </div>
         </div>
       </div>

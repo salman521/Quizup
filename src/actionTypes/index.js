@@ -10,6 +10,19 @@ import * as QuizActions from "./quiz";
 const url = "http://localhost:5000/";
 // const url = "https://wrp-test.herokuapp.com/";
 
+export async function uploadImages(data = []) {
+  const body = new FormData();
+  body.append("gallery", data);
+  body.append("Content-Type", data.type);
+
+  const response = await fetch(`${url}products/images`, {
+    method: "POST",
+    body,
+  });
+
+  return await response.json();
+}
+
 export {
   Suffixes,
   UserActions,
@@ -18,5 +31,5 @@ export {
   CategoryActions,
   QuestionActions,
   QuizActions,
-  url
+  url,
 };

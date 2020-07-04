@@ -7,8 +7,6 @@ import Login from "./pages/Login";
 import AdminLogin from "./pages/AdminLogin";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
-import Quiz from "./pages/Quiz";
-import QuizResult from "./pages/QuizResult";
 
 import AdminDashboard from "./pages/AdminDashboard";
 
@@ -24,14 +22,6 @@ const AppRouter = ({ userType, ...props }) => {
     <BrowserRouter history={history}>
       <Switch>
         <AuthRoute path="/home" component={Home} history={history} exact />
-        <AuthRoute path="/quiz" component={Quiz} history={history} exact />
-        <AuthRoute
-          path="/quizresult"
-          component={QuizResult}
-          history={history}
-          exact
-        />
-
         <OpenRoute path="/signup" component={Signup} exact />
         <OpenRoute path="/adminlogin" component={AdminLogin} exact />
         <OpenRoute path="/" component={Login} exact />
@@ -47,9 +37,9 @@ const AppRouter = ({ userType, ...props }) => {
 const mapStateToProps = ({ users, admins, common }) => ({
   userData: users.userData,
   adminData: admins.adminData,
-  userType: common.userType
+  userType: common.userType,
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

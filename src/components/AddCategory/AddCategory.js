@@ -16,16 +16,27 @@ const AddCategory = ({
 }) => {
   const [categoryName, setCategoryName] = useState("");
 
+  useEffect(() => {
+    getCategories(localStorage.getItem("id")).then((response) => {
+      console.log(response, "res");
+      // setCategoryName("");
+      // setOpen(false);
+    });
+  }, []);
+
   const handleCloseDialogs = () => {
     if (categoryName !== "") {
-      addCategory(categoryName)
-        .then(res => {
-          getCategories().then(response => {
+      addCategory({
+        name: categoryName,
+        id: localStorage.getItem("id"),
+      })
+        .then((res) => {
+          getCategories(localStorage.getItem("id")).then((response) => {
             setCategoryName("");
             setOpen(false);
           });
         })
-        .catch(err => alert("Cannot Add Category"));
+        .catch((err) => alert("Cannot Add Category"));
     } else {
       alert("Please Enter Category Name");
     }
@@ -37,8 +48,8 @@ const AddCategory = ({
       PaperProps={{
         style: {
           borderRadius: 22,
-          backgroundColor: Colors.TERTIARY
-        }
+          backgroundColor: Colors.TERTIARY,
+        },
       }}
       aria-labelledby="form-dialog-title"
     >
@@ -49,14 +60,14 @@ const AddCategory = ({
           display: "flex",
           flexDirection: "column",
           // borderRadius: 22,
-          padding: 48
+          padding: 48,
         }}
       >
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            height: 35
+            height: 35,
           }}
         >
           <span style={{ fontSize: 14, color: Colors.TEXT_TERTIARY }}>
@@ -71,20 +82,20 @@ const AddCategory = ({
             minWidth: "15vw",
             fontSize: "10px",
             color: Colors.TEXT_TERTIARY,
-            marginBottom: 13
+            marginBottom: 13,
           }}
         >
           <TextField
             margin="dense"
             type="text"
             value={categoryName}
-            onChange={e => setCategoryName(e.target.value)}
+            onChange={(e) => setCategoryName(e.target.value)}
             fullWidth
             InputLabelProps={{
               style: {
                 color: Colors.TEXT_PRIMARY,
-                fontSize: 12
-              }
+                fontSize: 12,
+              },
             }}
             label="Category Name"
             variant="outlined"
@@ -94,7 +105,7 @@ const AddCategory = ({
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
           }}
         >
           <Button
@@ -107,7 +118,7 @@ const AddCategory = ({
               borderRadius: 12,
               color: Colors.TEXT_TERTIARY,
 
-              textAlign: "center"
+              textAlign: "center",
             }}
             text="Cancel"
           />
@@ -120,7 +131,7 @@ const AddCategory = ({
 
               borderRadius: 12,
               color: Colors.TEXT_PRIMARY,
-              textAlign: "center"
+              textAlign: "center",
             }}
             text="Add"
           />
@@ -130,7 +141,7 @@ const AddCategory = ({
             height: 10,
             paddingTop: 20,
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           {loading && <CircularProgress size={20} color="secondary" />}

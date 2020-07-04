@@ -15,41 +15,36 @@ import {
   DialogContentText,
   TextField,
   DialogTitle,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 import AddIcon from "@material-ui/icons/Add";
 import Question from "../Question";
 import EditQuestion from "../EditQuestion";
+import { getUsers } from "../../actions/users";
 
 const QuestionsBox = ({
   activeCategoryId,
-  getQuestions,
-  quizQuestions,
+  getUsers,
+  usersArray,
   loading,
   ...props
 }) => {
   useEffect(() => {
-    if (activeCategoryId) {
-      getQuestions(activeCategoryId);
-    }
-  }, [activeCategoryId]);
+    getUsers().then((res) => {
+      console.log(res, "resssss");
+    });
+  }, []);
 
   return (
     <div className="questionsBox">
       <div style={{ paddingTop: 20 }}>
-        {quizQuestions && quizQuestions.length > 0 ? (
-          quizQuestions.map((question, index) => {
+        {usersArray && usersArray.length > 0 ? (
+          usersArray.map((user, index) => {
             return (
               <div>
-                <Question
-                  activeCategoryId={activeCategoryId}
-                  question={question}
-                  // setBoxOpen={setBoxOpen}
-                  // open={open}
-                  index={index + 1}
-                />
+                <Question user={user} index={index + 1} />
               </div>
             );
           })

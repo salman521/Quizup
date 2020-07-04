@@ -10,10 +10,9 @@ const AuthRoute = ({
 }) => {
   return (
     <div>
-      <Layout history={history} />
       <Route
         {...rest}
-        render={props =>
+        render={(props) =>
           localStorage.getItem("userType") === "user" ? (
             <Component {...props} />
           ) : (

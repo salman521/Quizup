@@ -21,53 +21,13 @@ const BookDetail = ({
   return (
     <div style={{ height: "100vh" }}>
       <div>
-        {selectedBox === "questions" && (
-          <div
-            className="addtransaction"
-            style={{
-              position: "absolute",
-              // left: '54vw',
-              bottom: "4vh",
-              right: "8vw",
-              minWidth: "15vw",
-              display: "flex",
-              // borderRadius: '20px',
-              justifyContent: "space-evenly",
-              alignItems: "center"
-            }}
-          >
-            <AddQuestion
-              open={open}
-              activeCategoryId={activeCategoryId && activeCategoryId}
-              handleClose={() => {
-                setBoxOpen(!open);
-              }}
-            />
-
-            {/* </Box> */}
-
-            <span>Add Question</span>
-            <Fab
-              style={{
-                backgroundColor: Colors.FOCUSED,
-                boxShadow: `0px 0px 8px ${Colors.FOCUSED}`
-              }}
-              aria-label="add"
-              onClick={() => {
-                setBoxOpen(!open);
-              }}
-            >
-              <AddIcon />
-            </Fab>
-          </div>
-        )}
         <div>
-          <NavBar
+          {/* <NavBar
             handleDrawerToggle={handleDrawerToggle}
             selectedBox={selectedBox}
             classes={classes}
             setSelectedBox={setSelectedBox}
-          />
+          /> */}
         </div>
         <h1>
           {selectedBox === "questions" ? "Questions" : "Users Quiz History"}
@@ -77,7 +37,7 @@ const BookDetail = ({
           style={{
             height: "85vh",
             paddingBottom: "80px",
-            overflow: "scroll"
+            overflow: "scroll",
           }}
         >
           {selectedBox === "questions" && (

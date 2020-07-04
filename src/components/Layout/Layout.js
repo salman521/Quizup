@@ -42,23 +42,22 @@ const Navigation = styled.div`
   }
 `;
 
-const Layout = props => {
+const Layout = (props) => {
   return (
     <>
       <HeadBar>
         <Link
           style={{
-            textDecoration: "none"
+            textDecoration: "none",
           }}
           to="/home"
         >
-          <SiteTitle>Quiz App</SiteTitle>
+          <SiteTitle>Smart Shopping Bot</SiteTitle>
         </Link>
-        {/* <SiteTitle>Quiz App</SiteTitle> */}
 
         <Navigation
           style={{
-            backgroundColor: Colors.TERTIARY
+            backgroundColor: Colors.TERTIARY,
           }}
         >
           <Link
@@ -66,7 +65,7 @@ const Layout = props => {
               textDecoration: "none",
               // borderRadius: 12,
               paddingLeft: 30,
-              backgroundColor: Colors.TERTIARY
+              backgroundColor: Colors.TERTIARY,
             }}
             to="/login"
           >
@@ -79,7 +78,7 @@ const Layout = props => {
                 minWidth: 140,
                 borderRadius: 12,
                 color: Colors.TEXT_SECONDARY,
-                textAlign: "center"
+                textAlign: "center",
               }}
               text="Logout"
             />

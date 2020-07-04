@@ -44,7 +44,7 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
       }}
     >
       <Typography style={{ marginBottom: 40 }} className="heading" variant="h4">
-        Quiz App
+        Smart Shopping Bot
       </Typography>
 
       <div className="loginPage">
@@ -75,7 +75,7 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
               style={{ width: 320 }}
               name="email"
               id="standard-required"
-              label="Enter Email"
+              label="Username"
               margin="normal"
             />
           </div>
@@ -101,7 +101,7 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
               fullWidth
               name="password"
               id="standard-required"
-              label="Enter Password"
+              label="Password"
               margin="normal"
             />
           </div>
@@ -112,16 +112,22 @@ const AdminLogin = ({ history, login, loading, setUserType, ...props }) => {
               onClick={() => {
                 if (email && password !== "") {
                   var data = { email, password };
-                  login(data)
-                    .then(res => {
-                      setUserType("admin");
-                      localStorage.setItem("id", res.value.data._id);
-                      localStorage.setItem("userType", "admin");
-                      history.push("/admindashboard");
-                    })
-                    .catch(err => {
-                      alert("Email or Password incorrect");
-                    });
+                  if (email === 'admin' && password === 'admin') {
+                    setUserType("admin");
+                    localStorage.setItem("id", '1');
+                    localStorage.setItem("userType", "admin");
+                    history.push("/admindashboard");
+                  }
+                  // login(data)
+                  //   .then(res => {
+                  //     setUserType("admin");
+                  //     localStorage.setItem("id", res.value.data._id);
+                  //     localStorage.setItem("userType", "admin");
+                  //     history.push("/admindashboard");
+                  //   })
+                  //   .catch(err => {
+                  //     alert("Email or Password incorrect");
+                  //   });
                 } else {
                   alert(
                     email === ""

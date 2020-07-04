@@ -1,57 +1,57 @@
 import { QuestionActions, url } from "../actionTypes";
 import axios from "axios";
 
-export const setQuestion = question => ({
+export const setQuestion = (question) => ({
   type: `${QuestionActions.SET_QUESTION}`,
-  question
+  question,
 });
-export const setOptionA = value => ({
+export const setOptionA = (value) => ({
   type: `${QuestionActions.SET_OPTION_A}`,
-  value
+  value,
 });
 
-export const setOptionB = value => ({
+export const setOptionB = (value) => ({
   type: `${QuestionActions.SET_OPTION_B}`,
-  value
+  value,
 });
-export const setOptionC = value => ({
+export const setOptionC = (value) => ({
   type: `${QuestionActions.SET_OPTION_C}`,
-  value
+  value,
 });
-export const setOptionD = value => ({
+export const setOptionD = (value) => ({
   type: `${QuestionActions.SET_OPTION_D}`,
-  value
+  value,
 });
-export const setAnswerIndex = value => ({
+export const setAnswerIndex = (value) => ({
   type: `${QuestionActions.SET_ANSWER_INDEX}`,
-  value
+  value,
 });
-export const postQuestion = data => {
+export const postQuestion = (data) => {
   return {
     type: `${QuestionActions.POST_QUESTION}`,
-    payload: axios.post(`${url}questions`, data)
+    payload: axios.post(`${url}questions`, data),
   };
 };
 
-export const getQuestions = categoryId => {
+export const getQuestions = (categoryId) => {
   return {
     type: `${QuestionActions.GET_QUESTIONS}`,
-    payload: axios.get(`${url}questions/${categoryId}`)
+    payload: axios.get(`${url}questions/${categoryId}`),
   };
 };
-export const deleteQuestion = questionId => {
+export const deleteQuestion = (questionId) => {
   return {
     type: `${QuestionActions.DELETE_QUESTION}`,
     payload: axios.delete(`${url}questions`, {
       params: {
-        id: questionId
-      }
-    })
+        id: questionId,
+      },
+    }),
   };
 };
-export const putQuestion = data => {
+export const putQuestion = (data) => {
   return {
     type: `${QuestionActions.UPDATE_QUESTION}`,
-    payload: axios.put(`${url}questions`, data)
+    payload: axios.put(`${url}questions`, data),
   };
 };

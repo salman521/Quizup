@@ -2,7 +2,7 @@ import { AdminActions, Suffixes } from "../actionTypes";
 
 const initalState = {
   loading: false,
-  adminData: null
+  adminData: null,
 };
 
 export default (state = initalState, action) => {
@@ -11,37 +11,52 @@ export default (state = initalState, action) => {
       return {
         ...state,
         adminData: {},
-        loading: true
+        loading: true,
       };
     case `${AdminActions.ADMIN_LOGIN}_${Suffixes.SUCCESS}`:
       return {
         ...state,
         adminData: action.payload.data,
-        loading: false
+        loading: false,
       };
     case `${AdminActions.ADMIN_LOGIN}_${Suffixes.FAILURE}`:
       return {
         ...state,
         loading: false,
-        adminData: {}
+        adminData: {},
       };
     case `${AdminActions.GET_ADMIN}_${Suffixes.REQUEST}`:
       return {
         ...state,
         adminData: {},
-        loading: true
+        loading: true,
       };
     case `${AdminActions.GET_ADMIN}_${Suffixes.SUCCESS}`:
       return {
         ...state,
         adminData: action.payload.data,
-        loading: false
+        loading: false,
       };
     case `${AdminActions.GET_ADMIN}_${Suffixes.FAILURE}`:
       return {
         ...state,
         loading: false,
-        adminData: {}
+        adminData: {},
+      };
+    case `${AdminActions.APPROVE_MANAGER}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        loading: true,
+      };
+    case `${AdminActions.APPROVE_MANAGER}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        loading: false,
+      };
+    case `${AdminActions.APPROVE_MANAGER}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

@@ -3,7 +3,7 @@ import { UserActions, Suffixes } from "../actionTypes";
 const initalState = {
   loading: false,
   userData: null,
-  usersArray: null
+  usersArray: null,
 };
 
 export default (state = initalState, action) => {
@@ -11,73 +11,88 @@ export default (state = initalState, action) => {
     case `${UserActions.USER_SIGNUP}_${Suffixes.REQUEST}`:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case `${UserActions.USER_SIGNUP}_${Suffixes.SUCCESS}`:
       return {
         ...state,
 
-        loading: false
+        loading: false,
       };
     case `${UserActions.USER_SIGNUP}_${Suffixes.FAILURE}`:
       return {
         ...state,
-        loading: false
+        loading: false,
         // data: {}
       };
     case `${UserActions.USER_LOGIN}_${Suffixes.REQUEST}`:
       return {
         ...state,
         userData: {},
-        loading: true
+        loading: true,
       };
     case `${UserActions.USER_LOGIN}_${Suffixes.SUCCESS}`:
       return {
         ...state,
         userData: action.payload.data,
-        loading: false
+        loading: false,
       };
     case `${UserActions.USER_LOGIN}_${Suffixes.FAILURE}`:
       return {
         ...state,
         loading: false,
-        userData: {}
+        userData: {},
       };
     case `${UserActions.GET_USER}_${Suffixes.REQUEST}`:
       return {
         ...state,
         // userData: {},
-        loading: true
+        loading: true,
       };
     case `${UserActions.GET_USER}_${Suffixes.SUCCESS}`:
       return {
         ...state,
         userData: action.payload.data,
-        loading: false
+        loading: false,
       };
     case `${UserActions.GET_USER}_${Suffixes.FAILURE}`:
       return {
         ...state,
         loading: false,
-        userData: {}
+        userData: {},
+      };
+    case `${UserActions.DELETE_PRODUCT}_${Suffixes.REQUEST}`:
+      return {
+        ...state,
+        loading: true,
+      };
+    case `${UserActions.DELETE_PRODUCT}_${Suffixes.SUCCESS}`:
+      return {
+        ...state,
+        loading: false,
+      };
+    case `${UserActions.DELETE_PRODUCT}_${Suffixes.FAILURE}`:
+      return {
+        ...state,
+        loading: false,
       };
     case `${UserActions.GET_USERS}_${Suffixes.REQUEST}`:
       return {
         ...state,
         usersArray: [],
-        loading: true
+        loading: true,
       };
     case `${UserActions.GET_USERS}_${Suffixes.SUCCESS}`:
       return {
         ...state,
         usersArray: action.payload.data,
-        loading: false
+        loading: false,
       };
     case `${UserActions.GET_USERS}_${Suffixes.FAILURE}`:
       return {
         ...state,
         loading: false,
-        usersArray: []
+        usersArray: [],
       };
     default:
       return state;
